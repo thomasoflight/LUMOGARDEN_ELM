@@ -1,0 +1,145 @@
+var _user$project$Fish$renderFish = function (fish) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(fish.fishName),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Fish$onEnter = function (msg) {
+	var isEnter = function (code) {
+		return _elm_lang$core$Native_Utils.eq(code, 13) ? _elm_lang$core$Json_Decode$succeed(msg) : _elm_lang$core$Json_Decode$fail('not ENTER');
+	};
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'keydown',
+		A2(_elm_lang$core$Json_Decode$andThen, isEnter, _elm_lang$html$Html_Events$keyCode));
+};
+var _user$project$Fish$makeFish = F2(
+	function (str, uid) {
+		return {fishName: str, fishUid: uid};
+	});
+var _user$project$Fish$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'UpdateFishField':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{fishField: _p0._0}),
+					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							fishField: '',
+							fish: _elm_lang$core$String$isEmpty(model.fishField) ? model.fish : A2(
+								_elm_lang$core$Basics_ops['++'],
+								model.fish,
+								{
+									ctor: '::',
+									_0: A2(_user$project$Fish$makeFish, model.fishField, model.fishUid),
+									_1: {ctor: '[]'}
+								}),
+							fishUid: model.fishUid + 1
+						}),
+					{ctor: '[]'});
+		}
+	});
+var _user$project$Fish$defaultModel = {
+	fish: {
+		ctor: '::',
+		_0: A2(_user$project$Fish$makeFish, '...', -1),
+		_1: {
+			ctor: '::',
+			_0: A2(_user$project$Fish$makeFish, '...', -2),
+			_1: {
+				ctor: '::',
+				_0: A2(_user$project$Fish$makeFish, '...', -3),
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	fishField: '',
+	fishUid: 0
+};
+var _user$project$Fish$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	_user$project$Fish$defaultModel,
+	{ctor: '[]'});
+var _user$project$Fish$Fish = F2(
+	function (a, b) {
+		return {fishName: a, fishUid: b};
+	});
+var _user$project$Fish$Model = F3(
+	function (a, b, c) {
+		return {fish: a, fishField: b, fishUid: c};
+	});
+var _user$project$Fish$Add = {ctor: 'Add'};
+var _user$project$Fish$UpdateFishField = function (a) {
+	return {ctor: 'UpdateFishField', _0: a};
+};
+var _user$project$Fish$renderFishInput = function (fishName) {
+	return A2(
+		_elm_lang$html$Html$input,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$placeholder('pls...tell us your fish'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$value(fishName),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onInput(_user$project$Fish$UpdateFishField),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Fish$onEnter(_user$project$Fish$Add),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		{ctor: '[]'});
+};
+var _user$project$Fish$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('fish-container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _user$project$Fish$renderFishInput(model.fishField),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					A2(_elm_lang$core$List$map, _user$project$Fish$renderFish, model.fish)),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Fish$main = _elm_lang$html$Html$program(
+	{
+		init: _user$project$Fish$init,
+		view: _user$project$Fish$view,
+		update: _user$project$Fish$update,
+		subscriptions: function (_p1) {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	})();
+var _user$project$Fish$NoOp = {ctor: 'NoOp'};
