@@ -33,7 +33,10 @@ type alias Card =
 
 
 type alias Model =
-    { cards : List Card }
+    { cards : List Card
+    , bool : Bool
+    , int : Int
+    }
 
 
 stylesheet : StyleSheet Styles variation
@@ -53,6 +56,7 @@ stylesheet =
 type Msg
     = NoOp
     | Check Bool
+    | CheckInt Int
 
 
 update msg model =
@@ -61,22 +65,20 @@ update msg model =
             model ! []
 
         Check bool ->
-            model ! []
+            { model | bool = bool } ! []
+
+        CheckInt int ->
+            { model | int = int } ! []
+
+
+myCards =
+    [ Card "A" True 1
+    , Card "B" False 2
+    ]
 
 
 init =
-    { cards =
-        [ { description = "A"
-          , completed = False
-          , id = 0
-          }
-        , { description = "B"
-          , completed = True
-          , id = 1
-          }
-        ]
-    }
-        ! []
+    Model myCards True 0 ! []
 
 
 view model =
@@ -84,43 +86,16 @@ view model =
         el None [ center, width (px 1000), height (px 1000) ] <|
             row None
                 [ spacing 40 ]
-                [ viewCardSteps model.cards
-                , viewCardSteps model.cards
+                [ Input.checkbox None
+                    [ Element.Events.onClick (CheckInt 5) ]
+                    { onChange = Check
+                    , checked = False
+                    , label = el None [] (text "hello!")
+                    , options = []
+                    }
+                , el None [] (text <| toString model.bool)
+                , el None [] (text <| toString model.int)
                 ]
-
-
-viewRebloom =
-    row None [ center ] [ el GreenButton [ width (px 100), height (px 25) ] (text "rebloom") ]
-
-
-viewCardSteps cards =
-    column None
-        [ width (percent 50), spacing 20 ]
-    <|
-        List.map viewCheckbox cards
-
-
-viewCheckbox card =
-    row None
-        []
-        [ Input.styledCheckbox Checkbox
-            []
-            { onChange = Check
-            , checked = card.completed
-            , label = el None [] (text "a checkbox")
-            , options = []
-            , icon =
-                \on ->
-                    circle 10
-                        (if on then
-                            CheckboxChecked
-                         else
-                            Checkbox
-                        )
-                        []
-                        empty
-            }
-        ]
 
 
 main =

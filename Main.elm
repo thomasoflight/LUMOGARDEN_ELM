@@ -17,6 +17,7 @@ type alias Step =
     { description : String
     , stepNo : Int
     , completed : Bool
+    , id : Int
     }
 
 
@@ -45,15 +46,15 @@ type alias Model =
 
 cardOne =
     Card "cardOne"
-        [ Step "one" 0 False
-        , Step "two" 1 False
+        [ Step "one" 0 False 1
+        , Step "two" 1 False 2
         ]
 
 
 cardTwo =
     Card "cardTwo"
-        [ Step "one" 0 False
-        , Step "two" 1 False
+        [ Step "one" 0 False 3
+        , Step "two" 1 False 4
         ]
 
 

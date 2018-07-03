@@ -1,67 +1,48 @@
 var _user$project$Form$update = F2(
 	function (msg, model) {
-		var _p0 = A2(_elm_lang$core$Debug$log, 'action', msg);
+		var _p0 = msg;
 		switch (_p0.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
 			case 'Check':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
 						model,
-						{checkbox: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'ChooseLunch':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
+						{bool: _p0._0}),
+					{ctor: '[]'});
+			case 'CheckInt':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
 						model,
-						{lunch: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'UpdateLunches':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{manyLunches: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'ChangeText':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{text: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'ShowMenu':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{openMenu: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'Search':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							search: A2(_mdgriffith$style_elements$Element_Input$updateSelection, _p0._0, model.search)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+						{$int: _p0._0}),
+					{ctor: '[]'});
 			default:
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
+				var updateStep = function (s) {
+					return _elm_lang$core$Native_Utils.eq(s.id, _p0._1) ? _elm_lang$core$Native_Utils.update(
+						s,
+						{completed: !_p0._0}) : s;
+				};
+				var updateCard = function (c) {
+					return _elm_lang$core$Native_Utils.update(
+						c,
+						{
+							steps: A2(_elm_lang$core$List$map, updateStep, c.steps)
+						});
+				};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
 						model,
 						{
-							selectMenu: A2(_mdgriffith$style_elements$Element_Input$updateSelection, _p0._0, model.selectMenu)
+							cardA: updateCard(model.cardA),
+							cardB: updateCard(model.cardB)
 						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+					{ctor: '[]'});
 		}
 	});
 var _user$project$Form_ops = _user$project$Form_ops || {};
@@ -69,17 +50,62 @@ _user$project$Form_ops['=>'] = F2(
 	function (v0, v1) {
 		return {ctor: '_Tuple2', _0: v0, _1: v1};
 	});
-var _user$project$Form$RoundRow = {ctor: 'RoundRow'};
-var _user$project$Form$CustomRadio = {ctor: 'CustomRadio'};
-var _user$project$Form$Button = {ctor: 'Button'};
-var _user$project$Form$LabelBox = {ctor: 'LabelBox'};
-var _user$project$Form$CheckboxChecked = {ctor: 'CheckboxChecked'};
-var _user$project$Form$Checkbox = {ctor: 'Checkbox'};
-var _user$project$Form$InputError = {ctor: 'InputError'};
-var _user$project$Form$Error = {ctor: 'Error'};
-var _user$project$Form$SubMenu = {ctor: 'SubMenu'};
-var _user$project$Form$Field = {ctor: 'Field'};
-var _user$project$Form$Page = {ctor: 'Page'};
+var _user$project$Form$Step = F3(
+	function (a, b, c) {
+		return {description: a, completed: b, id: c};
+	});
+var _user$project$Form$someSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Form$Step, 'A', true, 1),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Form$Step, 'B', false, 2),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Form$moreSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Form$Step, 'C', false, 3),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Form$Step, 'D', false, 4),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Form$Card = F2(
+	function (a, b) {
+		return {title: a, steps: b};
+	});
+var _user$project$Form$cardA = A2(_user$project$Form$Card, 'A', _user$project$Form$someSteps);
+var _user$project$Form$cardB = A2(_user$project$Form$Card, 'B', _user$project$Form$moreSteps);
+var _user$project$Form$Model = F4(
+	function (a, b, c, d) {
+		return {cardA: a, cardB: b, bool: c, $int: d};
+	});
+var _user$project$Form$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	A4(_user$project$Form$Model, _user$project$Form$cardA, _user$project$Form$cardB, true, 0),
+	{ctor: '[]'});
+var _user$project$Form$Debug = {ctor: 'Debug'};
+var _user$project$Form$viewDebug = function (c) {
+	return A3(
+		_mdgriffith$style_elements$Element$row,
+		_user$project$Form$Debug,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element$text(
+				_elm_lang$core$Basics$toString(c)),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Form$GreyOutline = {ctor: 'GreyOutline'};
+var _user$project$Form$GreenButton = {ctor: 'GreenButton'};
+var _user$project$Form$BlueFill = {ctor: 'BlueFill'};
 var _user$project$Form$None = {ctor: 'None'};
 var _user$project$Form$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
 	{
@@ -92,31 +118,27 @@ var _user$project$Form$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
 			ctor: '::',
 			_0: A2(
 				_mdgriffith$style_elements$Style$style,
-				_user$project$Form$Error,
+				_user$project$Form$BlueFill,
 				{
 					ctor: '::',
-					_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$red),
+					_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$blue),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
 					_mdgriffith$style_elements$Style$style,
-					_user$project$Form$CustomRadio,
+					_user$project$Form$GreyOutline,
 					{
 						ctor: '::',
-						_0: _mdgriffith$style_elements$Style_Border$rounded(5),
+						_0: _mdgriffith$style_elements$Style_Border$all(1),
 						_1: {
 							ctor: '::',
-							_0: _mdgriffith$style_elements$Style_Border$all(1),
+							_0: _mdgriffith$style_elements$Style_Border$solid,
 							_1: {
 								ctor: '::',
-								_0: _mdgriffith$style_elements$Style_Border$solid,
-								_1: {
-									ctor: '::',
-									_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$grey),
-									_1: {ctor: '[]'}
-								}
+								_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$grey),
+								_1: {ctor: '[]'}
 							}
 						}
 					}),
@@ -124,211 +146,139 @@ var _user$project$Form$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
 					ctor: '::',
 					_0: A2(
 						_mdgriffith$style_elements$Style$style,
-						_user$project$Form$LabelBox,
-						{ctor: '[]'}),
+						_user$project$Form$GreenButton,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$green),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Font$center,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
 					_1: {
 						ctor: '::',
 						_0: A2(
 							_mdgriffith$style_elements$Style$style,
-							_user$project$Form$Checkbox,
+							_user$project$Form$Debug,
 							{
 								ctor: '::',
-								_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$white),
+								_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$lightCharcoal),
 								_1: {
 									ctor: '::',
-									_0: _mdgriffith$style_elements$Style_Border$all(1),
+									_0: _mdgriffith$style_elements$Style_Font$uppercase,
 									_1: {
 										ctor: '::',
-										_0: _mdgriffith$style_elements$Style_Border$solid,
-										_1: {
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$grey),
-											_1: {ctor: '[]'}
-										}
+										_0: _mdgriffith$style_elements$Style_Font$size(10),
+										_1: {ctor: '[]'}
 									}
 								}
 							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_mdgriffith$style_elements$Style$style,
-								_user$project$Form$CheckboxChecked,
-								{
-									ctor: '::',
-									_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$blue),
-									_1: {
-										ctor: '::',
-										_0: _mdgriffith$style_elements$Style_Border$all(2),
-										_1: {
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Style_Border$solid,
-											_1: {
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$red),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_mdgriffith$style_elements$Style$style,
-									_user$project$Form$Page,
-									{
-										ctor: '::',
-										_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$darkCharcoal),
-										_1: {
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$white),
-											_1: {
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Style_Font$typeface(
-													{
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Style_Font$font('helvetica'),
-														_1: {
-															ctor: '::',
-															_0: _mdgriffith$style_elements$Style_Font$font('arial'),
-															_1: {
-																ctor: '::',
-																_0: _mdgriffith$style_elements$Style_Font$font('sans-serif'),
-																_1: {ctor: '[]'}
-															}
-														}
-													}),
-												_1: {
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Style_Font$size(16),
-													_1: {
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Style_Font$lineHeight(1.3),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_mdgriffith$style_elements$Style$style,
-										_user$project$Form$Field,
-										{
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Style_Border$rounded(5),
-											_1: {
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Style_Border$all(1),
-												_1: {
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Style_Border$solid,
-													_1: {
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$lightGrey),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_mdgriffith$style_elements$Style$style,
-											_user$project$Form$SubMenu,
-											{
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Style_Border$rounded(5),
-												_1: {
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Style_Border$all(2),
-													_1: {
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Style_Border$solid,
-														_1: {
-															ctor: '::',
-															_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$blue),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_mdgriffith$style_elements$Style$style,
-												_user$project$Form$Button,
-												{
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$lightBlue),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_mdgriffith$style_elements$Style$style,
-													_user$project$Form$RoundRow,
-													{
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Style_Border$all(1),
-														_1: {
-															ctor: '::',
-															_0: _mdgriffith$style_elements$Style_Border$solid,
-															_1: {
-																ctor: '::',
-																_0: _mdgriffith$style_elements$Style_Border$rounded(3),
-																_1: {
-																	ctor: '::',
-																	_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$lightBlue),
-																	_1: {
-																		ctor: '::',
-																		_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$darkCharcoal),
-																		_1: {ctor: '[]'}
-																	}
-																}
-															}
-														}
-													}),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
+						_1: {ctor: '[]'}
 					}
 				}
 			}
 		}
 	});
-var _user$project$Form$Thing = function (a) {
-	return {ctor: 'Thing', _0: a};
-};
-var _user$project$Form$SelectOne = function (a) {
-	return {ctor: 'SelectOne', _0: a};
-};
-var _user$project$Form$Search = function (a) {
-	return {ctor: 'Search', _0: a};
-};
-var _user$project$Form$ShowMenu = function (a) {
-	return {ctor: 'ShowMenu', _0: a};
-};
-var _user$project$Form$UpdateLunches = function (a) {
-	return {ctor: 'UpdateLunches', _0: a};
-};
-var _user$project$Form$ChangeText = function (a) {
-	return {ctor: 'ChangeText', _0: a};
-};
-var _user$project$Form$ChooseLunch = function (a) {
-	return {ctor: 'ChooseLunch', _0: a};
+var _user$project$Form$viewRebloom = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Form$None,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$center,
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Form$GreenButton,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$width(
+					_mdgriffith$style_elements$Element_Attributes$px(100)),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(
+						_mdgriffith$style_elements$Element_Attributes$px(25)),
+					_1: {ctor: '[]'}
+				}
+			},
+			_mdgriffith$style_elements$Element$text('rebloom')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Form$ToggleComplete = F2(
+	function (a, b) {
+		return {ctor: 'ToggleComplete', _0: a, _1: b};
+	});
+var _user$project$Form$CheckInt = function (a) {
+	return {ctor: 'CheckInt', _0: a};
 };
 var _user$project$Form$Check = function (a) {
 	return {ctor: 'Check', _0: a};
 };
-var _user$project$Form$Banana = {ctor: 'Banana'};
-var _user$project$Form$Gyro = {ctor: 'Gyro'};
-var _user$project$Form$Burrito = {ctor: 'Burrito'};
-var _user$project$Form$Taco = {ctor: 'Taco'};
+var _user$project$Form$viewCardSteps = function (card) {
+	var viewCheckbox = function (step) {
+		return A3(
+			_mdgriffith$style_elements$Element$row,
+			_user$project$Form$None,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_user$project$Form$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$width(
+							_mdgriffith$style_elements$Element_Attributes$percent(80)),
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$text(step.description)),
+				_1: {
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element_Input$checkbox,
+						_user$project$Form$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Events$onClick(
+								A2(_user$project$Form$ToggleComplete, step.completed, step.id)),
+							_1: {ctor: '[]'}
+						},
+						{
+							onChange: _user$project$Form$Check,
+							checked: step.completed,
+							label: A3(
+								_mdgriffith$style_elements$Element$el,
+								_user$project$Form$None,
+								{ctor: '[]'},
+								_mdgriffith$style_elements$Element$text('')),
+							options: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	};
+	return A3(
+		_mdgriffith$style_elements$Element$column,
+		_user$project$Form$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$width(
+				_mdgriffith$style_elements$Element_Attributes$percent(50)),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(_elm_lang$core$List$map, viewCheckbox, card.steps));
+};
 var _user$project$Form$view = function (model) {
 	return A2(
 		_mdgriffith$style_elements$Element$layout,
@@ -342,507 +292,64 @@ var _user$project$Form$view = function (model) {
 				_1: {
 					ctor: '::',
 					_0: _mdgriffith$style_elements$Element_Attributes$width(
-						_mdgriffith$style_elements$Element_Attributes$px(800)),
-					_1: {ctor: '[]'}
+						_mdgriffith$style_elements$Element_Attributes$px(1000)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$height(
+							_mdgriffith$style_elements$Element_Attributes$px(1000)),
+						_1: {ctor: '[]'}
+					}
 				}
 			},
 			A3(
 				_mdgriffith$style_elements$Element$column,
-				_user$project$Form$Page,
+				_user$project$Form$GreyOutline,
 				{
 					ctor: '::',
-					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
-					_1: {ctor: '[]'}
+					_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$padding(60),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
 				},
 				{
 					ctor: '::',
-					_0: A3(
-						_mdgriffith$style_elements$Element_Input$text,
-						_user$project$Form$Field,
-						{
-							ctor: '::',
-							_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
-							_1: {ctor: '[]'}
-						},
-						{
-							onChange: _user$project$Form$ChangeText,
-							value: model.text,
-							label: _mdgriffith$style_elements$Element_Input$placeholder(
-								{
-									label: _mdgriffith$style_elements$Element_Input$labelLeft(
-										A3(
-											_mdgriffith$style_elements$Element$el,
-											_user$project$Form$None,
-											{
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
-												_1: {ctor: '[]'}
-											},
-											_mdgriffith$style_elements$Element$text('Yup'))),
-									text: 'Placeholder!'
-								}),
-							options: {
-								ctor: '::',
-								_0: _mdgriffith$style_elements$Element_Input$errorBelow(
-									A3(
-										_mdgriffith$style_elements$Element$el,
-										_user$project$Form$Error,
-										{ctor: '[]'},
-										_mdgriffith$style_elements$Element$text('This is an Error!'))),
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _user$project$Form$viewRebloom,
 					_1: {
 						ctor: '::',
 						_0: A3(
-							_mdgriffith$style_elements$Element_Input$checkbox,
-							_user$project$Form$Checkbox,
-							{ctor: '[]'},
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Form$None,
 							{
-								onChange: _user$project$Form$Check,
-								checked: model.checkbox,
-								label: A3(
-									_mdgriffith$style_elements$Element$el,
-									_user$project$Form$None,
-									{ctor: '[]'},
-									_mdgriffith$style_elements$Element$text('hello!')),
-								options: {ctor: '[]'}
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(40),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _user$project$Form$viewCardSteps(model.cardA),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Form$viewCardSteps(model.cardB),
+									_1: {ctor: '[]'}
+								}
 							}),
 						_1: {
 							ctor: '::',
-							_0: A3(
-								_mdgriffith$style_elements$Element_Input$styledCheckbox,
-								_user$project$Form$Checkbox,
-								{ctor: '[]'},
-								{
-									onChange: _user$project$Form$Check,
-									checked: model.checkbox,
-									label: A3(
-										_mdgriffith$style_elements$Element$el,
-										_user$project$Form$None,
-										{ctor: '[]'},
-										_mdgriffith$style_elements$Element$text('hello!')),
-									options: {ctor: '[]'},
-									icon: function (on) {
-										return A4(
-											_mdgriffith$style_elements$Element$circle,
-											10,
-											on ? _user$project$Form$CheckboxChecked : _user$project$Form$Checkbox,
-											{ctor: '[]'},
-											_mdgriffith$style_elements$Element$empty);
-									}
-								}),
+							_0: _user$project$Form$viewDebug(model.cardA),
 							_1: {
 								ctor: '::',
-								_0: A3(
-									_mdgriffith$style_elements$Element_Input$radio,
-									_user$project$Form$Field,
-									{
-										ctor: '::',
-										_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
-										_1: {
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										onChange: _user$project$Form$ChooseLunch,
-										selected: _elm_lang$core$Maybe$Just(model.lunch),
-										label: _mdgriffith$style_elements$Element_Input$labelAbove(
-											_mdgriffith$style_elements$Element$text('Lunch')),
-										options: {ctor: '[]'},
-										choices: {
-											ctor: '::',
-											_0: A2(
-												_mdgriffith$style_elements$Element_Input$styledSelectChoice,
-												_user$project$Form$Burrito,
-												function (state) {
-													var icon = function () {
-														var _p1 = state;
-														switch (_p1.ctor) {
-															case 'Selected':
-																return ':)';
-															case 'Focused':
-																return ':/';
-															case 'Idle':
-																return ':(';
-															default:
-																return ':D';
-														}
-													}();
-													return A3(
-														_mdgriffith$style_elements$Element$row,
-														_user$project$Form$None,
-														{
-															ctor: '::',
-															_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
-															_1: {ctor: '[]'}
-														},
-														{
-															ctor: '::',
-															_0: A3(
-																_mdgriffith$style_elements$Element$el,
-																_user$project$Form$None,
-																{ctor: '[]'},
-																_mdgriffith$style_elements$Element$text(icon)),
-															_1: {
-																ctor: '::',
-																_0: _mdgriffith$style_elements$Element$text('burrito'),
-																_1: {ctor: '[]'}
-															}
-														});
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_mdgriffith$style_elements$Element_Input$choice,
-													_user$project$Form$Taco,
-													_mdgriffith$style_elements$Element$text('Taco!')),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_mdgriffith$style_elements$Element_Input$choice,
-														_user$project$Form$Gyro,
-														_mdgriffith$style_elements$Element$text('Gyro')),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A3(
-										_mdgriffith$style_elements$Element_Input$radioRow,
-										_user$project$Form$Field,
-										{
-											ctor: '::',
-											_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
-											_1: {
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Element_Attributes$spacing(50),
-												_1: {ctor: '[]'}
-											}
-										},
-										{
-											onChange: _user$project$Form$ChooseLunch,
-											selected: _elm_lang$core$Maybe$Just(model.lunch),
-											label: _mdgriffith$style_elements$Element_Input$labelAbove(
-												_mdgriffith$style_elements$Element$text('Lunch')),
-											options: {ctor: '[]'},
-											choices: {
-												ctor: '::',
-												_0: A2(
-													_mdgriffith$style_elements$Element_Input$choice,
-													_user$project$Form$Taco,
-													_mdgriffith$style_elements$Element$text('Taco!')),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_mdgriffith$style_elements$Element_Input$choice,
-														_user$project$Form$Gyro,
-														_mdgriffith$style_elements$Element$text('Gyro')),
-													_1: {
-														ctor: '::',
-														_0: A2(
-															_mdgriffith$style_elements$Element_Input$styledChoice,
-															_user$project$Form$Burrito,
-															function (selected) {
-																return A3(
-																	_mdgriffith$style_elements$Element$row,
-																	_user$project$Form$None,
-																	{
-																		ctor: '::',
-																		_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
-																		_1: {ctor: '[]'}
-																	},
-																	{
-																		ctor: '::',
-																		_0: A3(
-																			_mdgriffith$style_elements$Element$el,
-																			_user$project$Form$None,
-																			{ctor: '[]'},
-																			selected ? _mdgriffith$style_elements$Element$text(':D') : _mdgriffith$style_elements$Element$text(':(')),
-																		_1: {
-																			ctor: '::',
-																			_0: _mdgriffith$style_elements$Element$text('burrito'),
-																			_1: {ctor: '[]'}
-																		}
-																	});
-															}),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A3(
-											_mdgriffith$style_elements$Element_Input$select,
-											_user$project$Form$Field,
-											{
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
-												_1: {
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
-													_1: {ctor: '[]'}
-												}
-											},
-											{
-												label: _mdgriffith$style_elements$Element_Input$labelAbove(
-													_mdgriffith$style_elements$Element$text('Lunch')),
-												$with: model.selectMenu,
-												max: 5,
-												options: {ctor: '[]'},
-												menu: A3(
-													_mdgriffith$style_elements$Element_Input$menuAbove,
-													_user$project$Form$SubMenu,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: A2(
-															_mdgriffith$style_elements$Element_Input$choice,
-															_user$project$Form$Taco,
-															_mdgriffith$style_elements$Element$text('Taco!')),
-														_1: {
-															ctor: '::',
-															_0: A2(
-																_mdgriffith$style_elements$Element_Input$choice,
-																_user$project$Form$Gyro,
-																_mdgriffith$style_elements$Element$text('Gyro')),
-															_1: {
-																ctor: '::',
-																_0: A2(
-																	_mdgriffith$style_elements$Element_Input$styledChoice,
-																	_user$project$Form$Burrito,
-																	function (selected) {
-																		return A3(
-																			_mdgriffith$style_elements$Element$row,
-																			_user$project$Form$None,
-																			{
-																				ctor: '::',
-																				_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
-																				_1: {ctor: '[]'}
-																			},
-																			{
-																				ctor: '::',
-																				_0: A3(
-																					_mdgriffith$style_elements$Element$el,
-																					_user$project$Form$None,
-																					{ctor: '[]'},
-																					selected ? _mdgriffith$style_elements$Element$text(':D') : _mdgriffith$style_elements$Element$text(':(')),
-																				_1: {
-																					ctor: '::',
-																					_0: _mdgriffith$style_elements$Element$text('burrito'),
-																					_1: {ctor: '[]'}
-																				}
-																			});
-																	}),
-																_1: {ctor: '[]'}
-															}
-														}
-													})
-											}),
-										_1: {
-											ctor: '::',
-											_0: A3(
-												_mdgriffith$style_elements$Element_Input$select,
-												_user$project$Form$Field,
-												{
-													ctor: '::',
-													_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
-													_1: {
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Element_Attributes$spacing(0),
-														_1: {ctor: '[]'}
-													}
-												},
-												{
-													label: _mdgriffith$style_elements$Element_Input$hiddenLabel('Lunch'),
-													$with: model.search,
-													options: {
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Element_Input$errorAbove(
-															A3(
-																_mdgriffith$style_elements$Element$el,
-																_user$project$Form$Error,
-																{ctor: '[]'},
-																_mdgriffith$style_elements$Element$text('wut, an error?'))),
-														_1: {ctor: '[]'}
-													},
-													max: 5,
-													menu: A3(
-														_mdgriffith$style_elements$Element_Input$menu,
-														_user$project$Form$SubMenu,
-														{ctor: '[]'},
-														{
-															ctor: '::',
-															_0: A2(
-																_mdgriffith$style_elements$Element_Input$choice,
-																_user$project$Form$Taco,
-																_mdgriffith$style_elements$Element$text('Taco!')),
-															_1: {
-																ctor: '::',
-																_0: A2(
-																	_mdgriffith$style_elements$Element_Input$choice,
-																	_user$project$Form$Gyro,
-																	_mdgriffith$style_elements$Element$text('Gyro')),
-																_1: {
-																	ctor: '::',
-																	_0: A2(
-																		_mdgriffith$style_elements$Element_Input$choice,
-																		_user$project$Form$Banana,
-																		_mdgriffith$style_elements$Element$text('Banana')),
-																	_1: {
-																		ctor: '::',
-																		_0: A2(
-																			_mdgriffith$style_elements$Element_Input$styledSelectChoice,
-																			_user$project$Form$Burrito,
-																			function (state) {
-																				var icon = function () {
-																					var _p2 = state;
-																					switch (_p2.ctor) {
-																						case 'Selected':
-																							return ':)';
-																						case 'Focused':
-																							return ':o';
-																						case 'Idle':
-																							return ':(';
-																						default:
-																							return ':D';
-																					}
-																				}();
-																				return A3(
-																					_mdgriffith$style_elements$Element$row,
-																					_user$project$Form$None,
-																					{
-																						ctor: '::',
-																						_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
-																						_1: {ctor: '[]'}
-																					},
-																					{
-																						ctor: '::',
-																						_0: A3(
-																							_mdgriffith$style_elements$Element$el,
-																							_user$project$Form$None,
-																							{ctor: '[]'},
-																							_mdgriffith$style_elements$Element$text(icon)),
-																						_1: {
-																							ctor: '::',
-																							_0: _mdgriffith$style_elements$Element$text('burrito'),
-																							_1: {ctor: '[]'}
-																						}
-																					});
-																			}),
-																		_1: {ctor: '[]'}
-																	}
-																}
-															}
-														})
-												}),
-											_1: {
-												ctor: '::',
-												_0: A3(
-													_mdgriffith$style_elements$Element$row,
-													_user$project$Form$RoundRow,
-													{
-														ctor: '::',
-														_0: _mdgriffith$style_elements$Element_Attributes$height(
-															_mdgriffith$style_elements$Element_Attributes$px(40)),
-														_1: {ctor: '[]'}
-													},
-													{
-														ctor: '::',
-														_0: A3(
-															_mdgriffith$style_elements$Element$el,
-															_user$project$Form$Button,
-															{ctor: '[]'},
-															_mdgriffith$style_elements$Element$text('hi')),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: A3(
-														_mdgriffith$style_elements$Element$row,
-														_user$project$Form$RoundRow,
-														{
-															ctor: '::',
-															_0: _mdgriffith$style_elements$Element_Attributes$height(
-																_mdgriffith$style_elements$Element_Attributes$px(40)),
-															_1: {ctor: '[]'}
-														},
-														{
-															ctor: '::',
-															_0: A3(
-																_mdgriffith$style_elements$Element$el,
-																_user$project$Form$Button,
-																{ctor: '[]'},
-																_mdgriffith$style_elements$Element$text('hi')),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: A3(
-															_mdgriffith$style_elements$Element$row,
-															_user$project$Form$RoundRow,
-															{
-																ctor: '::',
-																_0: _mdgriffith$style_elements$Element_Attributes$height(
-																	_mdgriffith$style_elements$Element_Attributes$px(40)),
-																_1: {ctor: '[]'}
-															},
-															{
-																ctor: '::',
-																_0: A3(
-																	_mdgriffith$style_elements$Element_Input$styledCheckbox,
-																	_user$project$Form$None,
-																	{ctor: '[]'},
-																	{
-																		onChange: _user$project$Form$Check,
-																		checked: model.checkbox,
-																		label: A3(
-																			_mdgriffith$style_elements$Element$el,
-																			_user$project$Form$None,
-																			{ctor: '[]'},
-																			_mdgriffith$style_elements$Element$text('hello!')),
-																		options: {ctor: '[]'},
-																		icon: function (on) {
-																			return A3(
-																				_mdgriffith$style_elements$Element$button,
-																				on ? _user$project$Form$CheckboxChecked : _user$project$Form$Checkbox,
-																				{
-																					ctor: '::',
-																					_0: _mdgriffith$style_elements$Element_Attributes$height(
-																						_mdgriffith$style_elements$Element_Attributes$px(40)),
-																					_1: {
-																						ctor: '::',
-																						_0: _mdgriffith$style_elements$Element_Attributes$width(
-																							_mdgriffith$style_elements$Element_Attributes$px(12)),
-																						_1: {ctor: '[]'}
-																					}
-																				},
-																				_mdgriffith$style_elements$Element$empty);
-																		}
-																	}),
-																_1: {ctor: '[]'}
-															}),
-														_1: {
-															ctor: '::',
-															_0: A3(
-																_mdgriffith$style_elements$Element$el,
-																_user$project$Form$None,
-																{ctor: '[]'},
-																_mdgriffith$style_elements$Element$text(
-																	_elm_lang$core$Basics$toString(model.checkbox))),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
+								_0: _user$project$Form$viewDebug(model.cardB),
+								_1: {ctor: '[]'}
 							}
 						}
 					}
@@ -850,30 +357,11 @@ var _user$project$Form$view = function (model) {
 };
 var _user$project$Form$main = _elm_lang$html$Html$program(
 	{
-		init: {
-			ctor: '_Tuple2',
-			_0: {
-				checkbox: false,
-				lunch: _user$project$Form$Taco,
-				text: 'hi',
-				manyLunches: {
-					ctor: '::',
-					_0: _user$project$Form$Taco,
-					_1: {
-						ctor: '::',
-						_0: _user$project$Form$Burrito,
-						_1: {ctor: '[]'}
-					}
-				},
-				openMenu: false,
-				search: A2(_mdgriffith$style_elements$Element_Input$autocomplete, _elm_lang$core$Maybe$Nothing, _user$project$Form$Search),
-				selectMenu: A2(_mdgriffith$style_elements$Element_Input$dropMenu, _elm_lang$core$Maybe$Nothing, _user$project$Form$SelectOne)
-			},
-			_1: _elm_lang$core$Platform_Cmd$none
-		},
+		init: _user$project$Form$init,
 		update: _user$project$Form$update,
 		view: _user$project$Form$view,
-		subscriptions: function (_p3) {
+		subscriptions: function (_p1) {
 			return _elm_lang$core$Platform_Sub$none;
 		}
 	})();
+var _user$project$Form$NoOp = {ctor: 'NoOp'};
