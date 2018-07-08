@@ -193,7 +193,7 @@ view model =
 
 
 viewRebloom =
-    row None [ center ] [ el GreenButton [ width (px 100), height (px 25) ] (text "R") ]
+    row None [ center ] [ el GreenButton [ width (px 100), height (px 25) ] (text "rebloom") ]
 
 
 viewCardSteps cards =
