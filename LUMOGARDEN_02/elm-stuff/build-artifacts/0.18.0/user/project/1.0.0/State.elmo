@@ -1,0 +1,25 @@
+var _user$project$State$initialModel = function (page) {
+	return {
+		currentPage: page,
+		allCards: {
+			ctor: '::',
+			_0: _user$project$Types$cardA,
+			_1: {
+				ctor: '::',
+				_0: _user$project$Types$cardB,
+				_1: {ctor: '[]'}
+			}
+		},
+		cardsForBlocks: _user$project$Types$emptyBlocks,
+		cardsForJars: _user$project$Types$emptyJars,
+		flaggedForComplete: {ctor: '[]'}
+	};
+};
+var _user$project$State$init = function (location) {
+	var currentPage = _user$project$Routing$extractRoute(location);
+	return {
+		ctor: '_Tuple2',
+		_0: _user$project$State$initialModel(currentPage),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};

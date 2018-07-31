@@ -1,0 +1,553 @@
+var _user$project$Pages_JarsPage$header = {
+	ctor: '::',
+	_0: _mdgriffith$style_elements$Style_Font$font('raleway'),
+	_1: {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Style_Font$font('helvetica'),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Pages_JarsPage$LumoActions = {ctor: 'LumoActions'};
+var _user$project$Pages_JarsPage$viewRebloom = A3(
+	_mdgriffith$style_elements$Element$el,
+	_user$project$Pages_JarsPage$LumoActions,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Events$onClick(_user$project$Updates$Rebloom),
+			_1: {ctor: '[]'}
+		}
+	},
+	_mdgriffith$style_elements$Element$text('Rebloom'));
+var _user$project$Pages_JarsPage$LumoBlockHeaderCenter = {ctor: 'LumoBlockHeaderCenter'};
+var _user$project$Pages_JarsPage$LumoBlockHeader = {ctor: 'LumoBlockHeader'};
+var _user$project$Pages_JarsPage$LumoBlock = {ctor: 'LumoBlock'};
+var _user$project$Pages_JarsPage$viewLumoBlockCenter = function (coordinates) {
+	var _p0 = coordinates;
+	var x = _p0._0;
+	var y = _p0._1;
+	return _mdgriffith$style_elements$Element$cell(
+		{
+			start: {ctor: '_Tuple2', _0: x, _1: y},
+			width: 1,
+			height: 1,
+			content: A3(
+				_mdgriffith$style_elements$Element$column,
+				_user$project$Pages_JarsPage$LumoBlock,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$paddingXY, 30, 20),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$row,
+						_user$project$Pages_JarsPage$LumoBlockHeaderCenter,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$height(
+								_mdgriffith$style_elements$Element_Attributes$px(25)),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Pages_JarsPage$viewRebloom,
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Pages_JarsPage$LumoBlockHeaderCenter,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$height(
+									_mdgriffith$style_elements$Element_Attributes$px(25)),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A3(
+								_mdgriffith$style_elements$Element$row,
+								_user$project$Pages_JarsPage$LumoBlockHeaderCenter,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$height(
+										_mdgriffith$style_elements$Element_Attributes$px(25)),
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$row,
+									_user$project$Pages_JarsPage$LumoBlockHeaderCenter,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$height(
+											_mdgriffith$style_elements$Element_Attributes$px(25)),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				})
+		});
+};
+var _user$project$Pages_JarsPage$LumoHeader = {ctor: 'LumoHeader'};
+var _user$project$Pages_JarsPage$Title = {ctor: 'Title'};
+var _user$project$Pages_JarsPage$BlocksContainer = {ctor: 'BlocksContainer'};
+var _user$project$Pages_JarsPage$Debug = {ctor: 'Debug'};
+var _user$project$Pages_JarsPage$None = {ctor: 'None'};
+var _user$project$Pages_JarsPage$viewHeader = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_JarsPage$None,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(50)),
+		_1: {
+			ctor: '::',
+			_0: A2(_mdgriffith$style_elements$Element_Attributes$paddingXY, 3, 1),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_JarsPage$LumoHeader,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('lumogarden : jars')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_JarsPage$viewLumoBlock = function (coordinates) {
+	var _p1 = coordinates;
+	var x = _p1._0;
+	var y = _p1._1;
+	return _mdgriffith$style_elements$Element$cell(
+		{
+			start: {ctor: '_Tuple2', _0: x, _1: y},
+			width: 1,
+			height: 1,
+			content: A3(
+				_mdgriffith$style_elements$Element$column,
+				_user$project$Pages_JarsPage$LumoBlock,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$row,
+						_user$project$Pages_JarsPage$LumoBlockHeader,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$height(
+								_mdgriffith$style_elements$Element_Attributes$px(40)),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$center,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: A3(
+								_mdgriffith$style_elements$Element$el,
+								_user$project$Pages_JarsPage$None,
+								{ctor: '[]'},
+								_mdgriffith$style_elements$Element$text('...')),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				})
+		});
+};
+var _user$project$Pages_JarsPage$viewGrid = function (originWidth) {
+	var padAmt = originWidth / 62;
+	var spaceAmt = 2 * padAmt;
+	var colW = (originWidth - (2 * spaceAmt)) / 3;
+	var rowH = colW * 1.2;
+	return A3(
+		_mdgriffith$style_elements$Element$grid,
+		_user$project$Pages_JarsPage$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+			_1: {ctor: '[]'}
+		},
+		{
+			columns: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			rows: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			cells: {
+				ctor: '::',
+				_0: _user$project$Pages_JarsPage$viewLumoBlock(
+					{ctor: '_Tuple2', _0: 0, _1: 0}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Pages_JarsPage$viewLumoBlock(
+						{ctor: '_Tuple2', _0: 1, _1: 0}),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Pages_JarsPage$viewLumoBlock(
+							{ctor: '_Tuple2', _0: 2, _1: 0}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Pages_JarsPage$viewLumoBlock(
+								{ctor: '_Tuple2', _0: 0, _1: 1}),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Pages_JarsPage$viewLumoBlockCenter(
+									{ctor: '_Tuple2', _0: 1, _1: 1}),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_JarsPage$viewLumoBlock(
+										{ctor: '_Tuple2', _0: 2, _1: 1}),
+									_1: {
+										ctor: '::',
+										_0: _user$project$Pages_JarsPage$viewLumoBlock(
+											{ctor: '_Tuple2', _0: 0, _1: 2}),
+										_1: {
+											ctor: '::',
+											_0: _user$project$Pages_JarsPage$viewLumoBlock(
+												{ctor: '_Tuple2', _0: 1, _1: 2}),
+											_1: {
+												ctor: '::',
+												_0: _user$project$Pages_JarsPage$viewLumoBlock(
+													{ctor: '_Tuple2', _0: 2, _1: 2}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Pages_JarsPage$viewDebug = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_JarsPage$Debug,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(30)),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_JarsPage$None,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('debug')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_JarsPage$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_user$project$Pages_JarsPage$None,
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_user$project$Pages_JarsPage$Title,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Font$size(22),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_user$project$Pages_JarsPage$LumoBlock,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$white),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$all(1),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$solid,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$uppercase,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_user$project$Pages_JarsPage$Debug,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$darkCharcoal),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_JarsPage$header),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$size(10),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$style,
+							_user$project$Pages_JarsPage$BlocksContainer,
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$style,
+								_user$project$Pages_JarsPage$LumoHeader,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_JarsPage$header),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$size(24),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$uppercase,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$light,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_mdgriffith$style_elements$Style$style,
+									_user$project$Pages_JarsPage$LumoBlockHeader,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$bottom(1),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$solid,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_JarsPage$header),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Font$size(20),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_mdgriffith$style_elements$Style$style,
+										_user$project$Pages_JarsPage$LumoBlockHeaderCenter,
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$charcoal),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Border$all(1),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Border$solid,
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_JarsPage$header),
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Style_Font$size(20),
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_mdgriffith$style_elements$Style$style,
+											_user$project$Pages_JarsPage$LumoActions,
+											{
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$size(14),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$center,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Pages_JarsPage$viewPage = function () {
+	var originWidth = 580;
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_user$project$Pages_JarsPage$stylesheet,
+		A3(
+			_mdgriffith$style_elements$Element$column,
+			_user$project$Pages_JarsPage$None,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_user$project$Pages_JarsPage$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$px(originWidth)),
+							_1: {ctor: '[]'}
+						}
+					},
+					A3(
+						_mdgriffith$style_elements$Element$column,
+						_user$project$Pages_JarsPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Pages_JarsPage$viewHeader,
+							_1: {
+								ctor: '::',
+								_0: _user$project$Pages_JarsPage$viewGrid(originWidth),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_JarsPage$viewDebug,
+									_1: {ctor: '[]'}
+								}
+							}
+						})),
+				_1: {ctor: '[]'}
+			}));
+}();

@@ -1,0 +1,576 @@
+var _user$project$Pages_BlocksPage$header = {
+	ctor: '::',
+	_0: _mdgriffith$style_elements$Style_Font$font('raleway'),
+	_1: {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Style_Font$font('helvetica'),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Pages_BlocksPage$LumoActions = {ctor: 'LumoActions'};
+var _user$project$Pages_BlocksPage$viewRebloom = A3(
+	_mdgriffith$style_elements$Element$el,
+	_user$project$Pages_BlocksPage$LumoActions,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Events$onClick(_user$project$Updates$Rebloom),
+			_1: {ctor: '[]'}
+		}
+	},
+	_mdgriffith$style_elements$Element$text('Rebloom'));
+var _user$project$Pages_BlocksPage$LumoBlockHeaderCenter = {ctor: 'LumoBlockHeaderCenter'};
+var _user$project$Pages_BlocksPage$LumoBlockHeader = {ctor: 'LumoBlockHeader'};
+var _user$project$Pages_BlocksPage$LumoBlock = {ctor: 'LumoBlock'};
+var _user$project$Pages_BlocksPage$viewLumoBlockCenter = function (coordinates) {
+	var _p0 = coordinates;
+	var x = _p0._0;
+	var y = _p0._1;
+	return _mdgriffith$style_elements$Element$cell(
+		{
+			start: {ctor: '_Tuple2', _0: x, _1: y},
+			width: 1,
+			height: 1,
+			content: A3(
+				_mdgriffith$style_elements$Element$column,
+				_user$project$Pages_BlocksPage$LumoBlock,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$paddingXY, 30, 20),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$row,
+						_user$project$Pages_BlocksPage$LumoBlockHeaderCenter,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$height(
+								_mdgriffith$style_elements$Element_Attributes$px(25)),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Pages_BlocksPage$viewRebloom,
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Pages_BlocksPage$LumoBlockHeaderCenter,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$height(
+									_mdgriffith$style_elements$Element_Attributes$px(25)),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A3(
+								_mdgriffith$style_elements$Element$row,
+								_user$project$Pages_BlocksPage$LumoBlockHeaderCenter,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$height(
+										_mdgriffith$style_elements$Element_Attributes$px(25)),
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$row,
+									_user$project$Pages_BlocksPage$LumoBlockHeaderCenter,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$height(
+											_mdgriffith$style_elements$Element_Attributes$px(25)),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				})
+		});
+};
+var _user$project$Pages_BlocksPage$LumoHeader = {ctor: 'LumoHeader'};
+var _user$project$Pages_BlocksPage$Title = {ctor: 'Title'};
+var _user$project$Pages_BlocksPage$BlocksContainer = {ctor: 'BlocksContainer'};
+var _user$project$Pages_BlocksPage$Debug = {ctor: 'Debug'};
+var _user$project$Pages_BlocksPage$None = {ctor: 'None'};
+var _user$project$Pages_BlocksPage$viewHeader = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_BlocksPage$None,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(50)),
+		_1: {
+			ctor: '::',
+			_0: A2(_mdgriffith$style_elements$Element_Attributes$paddingXY, 3, 1),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_BlocksPage$LumoHeader,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('lumogarden : blocks')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_BlocksPage$viewLumoBlock = F2(
+	function (coordinates, cardsForBlocks) {
+		var _p1 = coordinates;
+		var x = _p1._0;
+		var y = _p1._1;
+		return _mdgriffith$style_elements$Element$cell(
+			{
+				start: {ctor: '_Tuple2', _0: x, _1: y},
+				width: 1,
+				height: 1,
+				content: A3(
+					_mdgriffith$style_elements$Element$column,
+					_user$project$Pages_BlocksPage$LumoBlock,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Pages_BlocksPage$LumoBlockHeader,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$height(
+									_mdgriffith$style_elements$Element_Attributes$px(40)),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$center,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_BlocksPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('...')),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element$text(
+								_elm_lang$core$Basics$toString(cardsForBlocks)),
+							_1: {ctor: '[]'}
+						}
+					})
+			});
+	});
+var _user$project$Pages_BlocksPage$viewGrid = F2(
+	function (originWidth, cardsForBlocks) {
+		var padAmt = originWidth / 62;
+		var spaceAmt = 2 * padAmt;
+		var colW = (originWidth - (2 * spaceAmt)) / 3;
+		var rowH = colW * 1.2;
+		return A3(
+			_mdgriffith$style_elements$Element$grid,
+			_user$project$Pages_BlocksPage$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+				_1: {ctor: '[]'}
+			},
+			{
+				columns: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				rows: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				cells: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Pages_BlocksPage$viewLumoBlock,
+						{ctor: '_Tuple2', _0: 0, _1: 0},
+						cardsForBlocks.a),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_user$project$Pages_BlocksPage$viewLumoBlock,
+							{ctor: '_Tuple2', _0: 1, _1: 0},
+							cardsForBlocks.b),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_user$project$Pages_BlocksPage$viewLumoBlock,
+								{ctor: '_Tuple2', _0: 2, _1: 0},
+								cardsForBlocks.c),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_user$project$Pages_BlocksPage$viewLumoBlock,
+									{ctor: '_Tuple2', _0: 0, _1: 1},
+									cardsForBlocks.d),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_BlocksPage$viewLumoBlockCenter(
+										{ctor: '_Tuple2', _0: 1, _1: 1}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_user$project$Pages_BlocksPage$viewLumoBlock,
+											{ctor: '_Tuple2', _0: 2, _1: 1},
+											cardsForBlocks.f),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_user$project$Pages_BlocksPage$viewLumoBlock,
+												{ctor: '_Tuple2', _0: 0, _1: 2},
+												cardsForBlocks.g),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_user$project$Pages_BlocksPage$viewLumoBlock,
+													{ctor: '_Tuple2', _0: 1, _1: 2},
+													cardsForBlocks.h),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_user$project$Pages_BlocksPage$viewLumoBlock,
+														{ctor: '_Tuple2', _0: 2, _1: 2},
+														cardsForBlocks.i),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+	});
+var _user$project$Pages_BlocksPage$viewDebug = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_BlocksPage$Debug,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(30)),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_BlocksPage$None,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('debug')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_BlocksPage$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_user$project$Pages_BlocksPage$None,
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_user$project$Pages_BlocksPage$Title,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Font$size(22),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_user$project$Pages_BlocksPage$LumoBlock,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$white),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$all(1),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$solid,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$uppercase,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_user$project$Pages_BlocksPage$Debug,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$darkCharcoal),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_BlocksPage$header),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$size(10),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$style,
+							_user$project$Pages_BlocksPage$BlocksContainer,
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$style,
+								_user$project$Pages_BlocksPage$LumoHeader,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_BlocksPage$header),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$size(24),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$uppercase,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$light,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_mdgriffith$style_elements$Style$style,
+									_user$project$Pages_BlocksPage$LumoBlockHeader,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$bottom(1),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$solid,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_BlocksPage$header),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Font$size(20),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_mdgriffith$style_elements$Style$style,
+										_user$project$Pages_BlocksPage$LumoBlockHeaderCenter,
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$charcoal),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Border$all(1),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Border$solid,
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_BlocksPage$header),
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Style_Font$size(20),
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_mdgriffith$style_elements$Style$style,
+											_user$project$Pages_BlocksPage$LumoActions,
+											{
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$size(14),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$center,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Pages_BlocksPage$viewPage = function (cardsForBlocks) {
+	var originWidth = 580;
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_user$project$Pages_BlocksPage$stylesheet,
+		A3(
+			_mdgriffith$style_elements$Element$column,
+			_user$project$Pages_BlocksPage$None,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_user$project$Pages_BlocksPage$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$px(originWidth)),
+							_1: {ctor: '[]'}
+						}
+					},
+					A3(
+						_mdgriffith$style_elements$Element$column,
+						_user$project$Pages_BlocksPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Pages_BlocksPage$viewHeader,
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Pages_BlocksPage$viewGrid, originWidth, cardsForBlocks),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_BlocksPage$viewDebug,
+									_1: {ctor: '[]'}
+								}
+							}
+						})),
+				_1: {ctor: '[]'}
+			}));
+};

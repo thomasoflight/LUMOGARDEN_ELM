@@ -1,0 +1,19 @@
+var _user$project$View$notFoundPage = A2(
+	_elm_lang$html$Html$h3,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html$text('...'),
+		_1: {ctor: '[]'}
+	});
+var _user$project$View$view = function (model) {
+	var _p0 = model.currentPage;
+	switch (_p0.ctor) {
+		case 'BlocksPage':
+			return _user$project$Pages_BlocksPage$viewPage(model.cardsForBlocks);
+		case 'JarsPage':
+			return _user$project$Pages_JarsPage$viewPage;
+		default:
+			return _user$project$View$notFoundPage;
+	}
+};

@@ -1,0 +1,76 @@
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {cardA: a, cardB: b, cardDflt: c, flaggedForComplete: d};
+	});
+var _user$project$Models$Step = F3(
+	function (a, b, c) {
+		return {description: a, completed: b, id: c};
+	});
+var _user$project$Models$someSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Models$Step, 'A', true, 1),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Models$Step, 'B', false, 2),
+		_1: {
+			ctor: '::',
+			_0: A3(_user$project$Models$Step, 'C', false, 3),
+			_1: {
+				ctor: '::',
+				_0: A3(_user$project$Models$Step, 'D', false, 4),
+				_1: {
+					ctor: '::',
+					_0: A3(_user$project$Models$Step, 'E', false, 5),
+					_1: {
+						ctor: '::',
+						_0: A3(_user$project$Models$Step, '...', false, 6),
+						_1: {
+							ctor: '::',
+							_0: A3(_user$project$Models$Step, '...', false, 7),
+							_1: {
+								ctor: '::',
+								_0: A3(_user$project$Models$Step, '...', false, 8),
+								_1: {
+									ctor: '::',
+									_0: A3(_user$project$Models$Step, '...', false, 9),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$Models$moreSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Models$Step, 'C', false, 10),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Models$Step, 'D', false, 11),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Models$Card = F2(
+	function (a, b) {
+		return {title: a, steps: b};
+	});
+var _user$project$Models$cardA = A2(_user$project$Models$Card, 'A', _user$project$Models$someSteps);
+var _user$project$Models$cardB = A2(_user$project$Models$Card, 'B', _user$project$Models$moreSteps);
+var _user$project$Models$cardDflt = A2(
+	_user$project$Models$Card,
+	'...',
+	{ctor: '[]'});
+var _user$project$Models$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	A4(
+		_user$project$Models$Model,
+		_user$project$Models$cardA,
+		_user$project$Models$cardB,
+		_user$project$Models$cardDflt,
+		{ctor: '[]'}),
+	{ctor: '[]'});
+var _user$project$Models$Inactive = {ctor: 'Inactive'};
+var _user$project$Models$ActiveJar = {ctor: 'ActiveJar'};
+var _user$project$Models$ActiveBlock = {ctor: 'ActiveBlock'};

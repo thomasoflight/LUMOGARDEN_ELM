@@ -1,0 +1,9 @@
+var _user$project$Jars$main = _elm_lang$html$Html$program(
+	{
+		init: _user$project$Models$init,
+		update: _user$project$Updates$update,
+		view: _user$project$Views$view,
+		subscriptions: function (_p0) {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	})();

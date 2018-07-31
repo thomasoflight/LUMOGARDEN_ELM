@@ -1,0 +1,83 @@
+var _user$project$Updates$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'Check':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'LocationChanged':
+				var newPage = _user$project$Routing$extractRoute(_p0._0);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentPage: newPage}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleComplete':
+				var removeFlag = function (id) {
+					return A2(_elm_lang$core$List$member, id, model.flaggedForComplete);
+				};
+				var addFlag = function (id) {
+					return !A2(_elm_lang$core$List$member, id, model.flaggedForComplete);
+				};
+				var updateFlags = F2(
+					function (flaggedIds, id) {
+						return addFlag(id) ? {ctor: '::', _0: id, _1: flaggedIds} : (removeFlag(id) ? A2(
+							_elm_lang$core$List$filter,
+							function (i) {
+								return !_elm_lang$core$Native_Utils.eq(i, id);
+							},
+							flaggedIds) : flaggedIds);
+					});
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							flaggedForComplete: A2(updateFlags, model.flaggedForComplete, _p0._0)
+						}),
+					{ctor: '[]'});
+			default:
+				var updateCheck = function (step) {
+					return A2(_elm_lang$core$List$member, step.id, model.flaggedForComplete) ? _elm_lang$core$Native_Utils.update(
+						step,
+						{completed: true}) : step;
+				};
+				var updateCard = function (c) {
+					return _elm_lang$core$Native_Utils.update(
+						c,
+						{
+							steps: A2(_elm_lang$core$List$map, updateCheck, c.steps)
+						});
+				};
+				var updatedCards = A2(_elm_lang$core$List$map, updateCard, model.allCards);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							allCards: updatedCards,
+							flaggedForComplete: {ctor: '[]'}
+						}),
+					{ctor: '[]'});
+		}
+	});
+var _user$project$Updates$Rebloom = {ctor: 'Rebloom'};
+var _user$project$Updates$ToggleComplete = function (a) {
+	return {ctor: 'ToggleComplete', _0: a};
+};
+var _user$project$Updates$LocationChanged = function (a) {
+	return {ctor: 'LocationChanged', _0: a};
+};
+var _user$project$Updates$Check = function (a) {
+	return {ctor: 'Check', _0: a};
+};
+var _user$project$Updates$NoOp = {ctor: 'NoOp'};

@@ -1,0 +1,11 @@
+var _user$project$App$main = A2(
+	_elm_lang$navigation$Navigation$program,
+	_user$project$Updates$LocationChanged,
+	{
+		init: _user$project$State$init,
+		update: _user$project$Updates$update,
+		view: _user$project$View$view,
+		subscriptions: function (_p0) {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	})();

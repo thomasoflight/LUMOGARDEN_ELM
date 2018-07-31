@@ -1,0 +1,446 @@
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'Check':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'ToggleComplete':
+				var removeFlag = function (id) {
+					return A2(_elm_lang$core$List$member, id, model.flaggedForComplete);
+				};
+				var addFlag = function (id) {
+					return !A2(_elm_lang$core$List$member, id, model.flaggedForComplete);
+				};
+				var updateFlags = F2(
+					function (flaggedIds, id) {
+						return addFlag(id) ? {ctor: '::', _0: id, _1: flaggedIds} : (removeFlag(id) ? A2(
+							_elm_lang$core$List$filter,
+							function (i) {
+								return !_elm_lang$core$Native_Utils.eq(i, id);
+							},
+							flaggedIds) : flaggedIds);
+					});
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							flaggedForComplete: A2(updateFlags, model.flaggedForComplete, _p0._0)
+						}),
+					{ctor: '[]'});
+			default:
+				var updateCheck = function (step) {
+					return A2(_elm_lang$core$List$member, step.id, model.flaggedForComplete) ? _elm_lang$core$Native_Utils.update(
+						step,
+						{completed: true}) : step;
+				};
+				var updateCard = function (c) {
+					return _elm_lang$core$Native_Utils.update(
+						c,
+						{
+							steps: A2(_elm_lang$core$List$map, updateCheck, c.steps)
+						});
+				};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							cardA: updateCard(model.cardA),
+							cardB: updateCard(model.cardB),
+							flaggedForComplete: {ctor: '[]'}
+						}),
+					{ctor: '[]'});
+		}
+	});
+var _user$project$Main_ops = _user$project$Main_ops || {};
+_user$project$Main_ops['=>'] = F2(
+	function (v0, v1) {
+		return {ctor: '_Tuple2', _0: v0, _1: v1};
+	});
+var _user$project$Main$Step = F3(
+	function (a, b, c) {
+		return {description: a, completed: b, id: c};
+	});
+var _user$project$Main$someSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Main$Step, 'A', true, 1),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Main$Step, 'B', false, 2),
+		_1: {
+			ctor: '::',
+			_0: A3(_user$project$Main$Step, 'C', false, 3),
+			_1: {
+				ctor: '::',
+				_0: A3(_user$project$Main$Step, 'D', false, 4),
+				_1: {
+					ctor: '::',
+					_0: A3(_user$project$Main$Step, 'E', false, 5),
+					_1: {
+						ctor: '::',
+						_0: A3(_user$project$Main$Step, '...', false, 6),
+						_1: {
+							ctor: '::',
+							_0: A3(_user$project$Main$Step, '...', false, 7),
+							_1: {
+								ctor: '::',
+								_0: A3(_user$project$Main$Step, '...', false, 8),
+								_1: {
+									ctor: '::',
+									_0: A3(_user$project$Main$Step, '...', false, 9),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$Main$moreSteps = {
+	ctor: '::',
+	_0: A3(_user$project$Main$Step, 'C', false, 10),
+	_1: {
+		ctor: '::',
+		_0: A3(_user$project$Main$Step, 'D', false, 11),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Main$Card = F3(
+	function (a, b, c) {
+		return {title: a, steps: b, flaggedForComplete: c};
+	});
+var _user$project$Main$cardA = A3(
+	_user$project$Main$Card,
+	'A',
+	_user$project$Main$someSteps,
+	{ctor: '[]'});
+var _user$project$Main$cardB = A3(
+	_user$project$Main$Card,
+	'B',
+	_user$project$Main$moreSteps,
+	{ctor: '[]'});
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {cardA: a, cardB: b, flaggedForComplete: c};
+	});
+var _user$project$Main$init = A2(
+	_elm_lang$core$Platform_Cmd_ops['!'],
+	A3(
+		_user$project$Main$Model,
+		_user$project$Main$cardA,
+		_user$project$Main$cardB,
+		{ctor: '[]'}),
+	{ctor: '[]'});
+var _user$project$Main$Debug = {ctor: 'Debug'};
+var _user$project$Main$viewDebug = function (c) {
+	return A3(
+		_mdgriffith$style_elements$Element$row,
+		_user$project$Main$Debug,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element$text(
+				_elm_lang$core$Basics$toString(c)),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$GreyOutline = {ctor: 'GreyOutline'};
+var _user$project$Main$GreenButton = {ctor: 'GreenButton'};
+var _user$project$Main$BlueFill = {ctor: 'BlueFill'};
+var _user$project$Main$None = {ctor: 'None'};
+var _user$project$Main$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_user$project$Main$None,
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_user$project$Main$BlueFill,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$blue),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_user$project$Main$GreyOutline,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Border$all(1),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Border$solid,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$grey),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_user$project$Main$GreenButton,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$green),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Font$center,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$style,
+							_user$project$Main$Debug,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$lightCharcoal),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Font$uppercase,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$size(10),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Main$viewDebugList = function (items) {
+	return A3(
+		_mdgriffith$style_elements$Element$column,
+		_user$project$Main$None,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$Main$viewDebug, items));
+};
+var _user$project$Main$Rebloom = {ctor: 'Rebloom'};
+var _user$project$Main$viewRefresh = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Main$None,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$center,
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Main$GreenButton,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Events$onClick(_user$project$Main$Rebloom),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$width(
+						_mdgriffith$style_elements$Element_Attributes$px(100)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$height(
+							_mdgriffith$style_elements$Element_Attributes$px(25)),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			_mdgriffith$style_elements$Element$text('refresh')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Main$ToggleComplete = function (a) {
+	return {ctor: 'ToggleComplete', _0: a};
+};
+var _user$project$Main$Check = function (a) {
+	return {ctor: 'Check', _0: a};
+};
+var _user$project$Main$viewCardSteps = function (card) {
+	var activeSteps = A2(
+		_elm_lang$core$List$filter,
+		function (s) {
+			return !s.completed;
+		},
+		card.steps);
+	var selectedSteps = A2(_elm_lang$core$List$take, 3, activeSteps);
+	var viewCheckbox = function (step) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(step.id),
+			_1: A3(
+				_mdgriffith$style_elements$Element$row,
+				_user$project$Main$None,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$el,
+						_user$project$Main$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$percent(80)),
+							_1: {ctor: '[]'}
+						},
+						_mdgriffith$style_elements$Element$text(step.description)),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element_Input$checkbox,
+							_user$project$Main$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Events$onClick(
+									_user$project$Main$ToggleComplete(step.id)),
+								_1: {ctor: '[]'}
+							},
+							{
+								onChange: _user$project$Main$Check,
+								checked: step.completed,
+								label: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Main$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('')),
+								options: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})
+		};
+	};
+	return A3(
+		_mdgriffith$style_elements$Element_Keyed$column,
+		_user$project$Main$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$width(
+				_mdgriffith$style_elements$Element_Attributes$percent(50)),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(_elm_lang$core$List$map, viewCheckbox, selectedSteps));
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_user$project$Main$stylesheet,
+		A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Main$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$center,
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$width(
+						_mdgriffith$style_elements$Element_Attributes$px(650)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$height(
+							_mdgriffith$style_elements$Element_Attributes$px(650)),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			A3(
+				_mdgriffith$style_elements$Element$column,
+				_user$project$Main$GreyOutline,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$padding(60),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _user$project$Main$viewRefresh,
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Main$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(40),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _user$project$Main$viewCardSteps(model.cardA),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$viewCardSteps(model.cardB),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$viewDebug(model.flaggedForComplete),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Main$viewDebugList(model.cardA.steps),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$viewDebugList(model.cardB.steps),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				})));
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{
+		init: _user$project$Main$init,
+		update: _user$project$Main$update,
+		view: _user$project$Main$view,
+		subscriptions: function (_p1) {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	})();
+var _user$project$Main$NoOp = {ctor: 'NoOp'};
