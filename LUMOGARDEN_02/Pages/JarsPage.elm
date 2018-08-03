@@ -15,7 +15,7 @@ import Style.Transition as Transition
 import Updates
 
 
-viewPage =
+viewPage model =
     let
         originWidth =
             580
@@ -27,7 +27,7 @@ viewPage =
                 column None
                     [ spacing 10 ]
                     [ viewHeader
-                    , viewGrid originWidth
+                    , viewGrid originWidth model
                     , viewDebug
                     ]
             ]
@@ -42,7 +42,7 @@ viewHeader =
         [ el LumoHeader [] (text "lumogarden : jars") ]
 
 
-viewGrid originWidth =
+viewGrid originWidth model =
     let
         padAmt =
             originWidth / 62
@@ -70,24 +70,24 @@ viewGrid originWidth =
             ]
         , cells =
             [ -- TOP ROW --
-              viewLumoBlock ( 0, 0 )
-            , viewLumoBlock ( 1, 0 )
-            , viewLumoBlock ( 2, 0 )
+              viewLumoBlock ( 0, 0 ) model.cardsForJars.aa
+            , viewLumoBlock ( 1, 0 ) model.cardsForJars.bb
+            , viewLumoBlock ( 2, 0 ) model.cardsForJars.cc
 
             -- MIDDLE ROW --
-            , viewLumoBlock ( 0, 1 )
+            , viewLumoBlock ( 0, 1 ) model.cardsForJars.dd
             , viewLumoBlockCenter ( 1, 1 )
-            , viewLumoBlock ( 2, 1 )
+            , viewLumoBlock ( 2, 1 ) model.cardsForJars.ff
 
             -- BOTTOM ROM --
-            , viewLumoBlock ( 0, 2 )
-            , viewLumoBlock ( 1, 2 )
-            , viewLumoBlock ( 2, 2 )
+            , viewLumoBlock ( 0, 2 ) model.cardsForJars.gg
+            , viewLumoBlock ( 1, 2 ) model.cardsForJars.hh
+            , viewLumoBlock ( 2, 2 ) model.cardsForJars.ii
             ]
         }
 
 
-viewLumoBlock coordinates =
+viewLumoBlock coordinates card =
     let
         ( x, y ) =
             coordinates
@@ -100,12 +100,9 @@ viewLumoBlock coordinates =
             column LumoBlock
                 []
                 [ row LumoBlockHeader [ height (px 40), center, alignBottom ] [ el None [] (text "...") ]
+                , viewCardSteps card
                 ]
         }
-
-
-viewDebug =
-    row Debug [ height (px 30), center, verticalCenter ] [ el None [] (text "debug") ]
 
 
 viewLumoBlockCenter coordinates =
@@ -128,8 +125,41 @@ viewLumoBlockCenter coordinates =
         }
 
 
+viewCardSteps card =
+    let
+        viewCheckbox step =
+            ( toString step.id
+            , row None
+                []
+                [ el None [ width (percent 80) ] (text step.description)
+                , Input.checkbox None
+                    [ Element.Events.onClick (Updates.ToggleComplete step.id) ]
+                    { onChange = Updates.Check
+                    , checked = step.completed
+                    , label = el None [] (text "")
+                    , options = []
+                    }
+                ]
+            )
+
+        activeSteps =
+            List.filter (\s -> not s.completed) card.steps
+
+        selectedSteps =
+            List.take 3 activeSteps
+    in
+    Keyed.column None
+        [ width fill, padding 10, spacing 20 ]
+    <|
+        List.map viewCheckbox selectedSteps
+
+
 viewRebloom =
     el LumoActions [ width fill, Element.Events.onClick Updates.Rebloom ] (text "Rebloom")
+
+
+viewDebug =
+    row Debug [ height (px 30), center, verticalCenter ] [ el None [] (text "...") ]
 
 
 

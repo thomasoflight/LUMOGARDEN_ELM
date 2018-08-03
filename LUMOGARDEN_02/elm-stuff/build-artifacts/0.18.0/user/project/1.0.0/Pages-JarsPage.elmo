@@ -143,128 +143,223 @@ var _user$project$Pages_JarsPage$viewHeader = A3(
 			_mdgriffith$style_elements$Element$text('lumogarden : jars')),
 		_1: {ctor: '[]'}
 	});
-var _user$project$Pages_JarsPage$viewLumoBlock = function (coordinates) {
-	var _p1 = coordinates;
-	var x = _p1._0;
-	var y = _p1._1;
-	return _mdgriffith$style_elements$Element$cell(
-		{
-			start: {ctor: '_Tuple2', _0: x, _1: y},
-			width: 1,
-			height: 1,
-			content: A3(
-				_mdgriffith$style_elements$Element$column,
-				_user$project$Pages_JarsPage$LumoBlock,
+var _user$project$Pages_JarsPage$viewCardSteps = function (card) {
+	var activeSteps = A2(
+		_elm_lang$core$List$filter,
+		function (s) {
+			return !s.completed;
+		},
+		card.steps);
+	var selectedSteps = A2(_elm_lang$core$List$take, 3, activeSteps);
+	var viewCheckbox = function (step) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(step.id),
+			_1: A3(
+				_mdgriffith$style_elements$Element$row,
+				_user$project$Pages_JarsPage$None,
 				{ctor: '[]'},
 				{
 					ctor: '::',
 					_0: A3(
-						_mdgriffith$style_elements$Element$row,
-						_user$project$Pages_JarsPage$LumoBlockHeader,
+						_mdgriffith$style_elements$Element$el,
+						_user$project$Pages_JarsPage$None,
 						{
 							ctor: '::',
-							_0: _mdgriffith$style_elements$Element_Attributes$height(
-								_mdgriffith$style_elements$Element_Attributes$px(40)),
-							_1: {
-								ctor: '::',
-								_0: _mdgriffith$style_elements$Element_Attributes$center,
-								_1: {
-									ctor: '::',
-									_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
-									_1: {ctor: '[]'}
-								}
-							}
-						},
-						{
-							ctor: '::',
-							_0: A3(
-								_mdgriffith$style_elements$Element$el,
-								_user$project$Pages_JarsPage$None,
-								{ctor: '[]'},
-								_mdgriffith$style_elements$Element$text('...')),
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$percent(80)),
 							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
+						},
+						_mdgriffith$style_elements$Element$text(step.description)),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element_Input$checkbox,
+							_user$project$Pages_JarsPage$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Events$onClick(
+									_user$project$Updates$ToggleComplete(step.id)),
+								_1: {ctor: '[]'}
+							},
+							{
+								onChange: _user$project$Updates$Check,
+								checked: step.completed,
+								label: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_JarsPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('')),
+								options: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
 				})
-		});
-};
-var _user$project$Pages_JarsPage$viewGrid = function (originWidth) {
-	var padAmt = originWidth / 62;
-	var spaceAmt = 2 * padAmt;
-	var colW = (originWidth - (2 * spaceAmt)) / 3;
-	var rowH = colW * 1.2;
+		};
+	};
 	return A3(
-		_mdgriffith$style_elements$Element$grid,
+		_mdgriffith$style_elements$Element_Keyed$column,
 		_user$project$Pages_JarsPage$None,
 		{
 			ctor: '::',
-			_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
-			_1: {ctor: '[]'}
-		},
-		{
-			columns: {
+			_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+			_1: {
 				ctor: '::',
-				_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+				_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
 				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		A2(_elm_lang$core$List$map, viewCheckbox, selectedSteps));
+};
+var _user$project$Pages_JarsPage$viewLumoBlock = F2(
+	function (coordinates, card) {
+		var _p1 = coordinates;
+		var x = _p1._0;
+		var y = _p1._1;
+		return _mdgriffith$style_elements$Element$cell(
+			{
+				start: {ctor: '_Tuple2', _0: x, _1: y},
+				width: 1,
+				height: 1,
+				content: A3(
+					_mdgriffith$style_elements$Element$column,
+					_user$project$Pages_JarsPage$LumoBlock,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$Pages_JarsPage$LumoBlockHeader,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$height(
+									_mdgriffith$style_elements$Element_Attributes$px(40)),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$center,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_JarsPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('...')),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Pages_JarsPage$viewCardSteps(card),
+							_1: {ctor: '[]'}
+						}
+					})
+			});
+	});
+var _user$project$Pages_JarsPage$viewGrid = F2(
+	function (originWidth, model) {
+		var padAmt = originWidth / 62;
+		var spaceAmt = 2 * padAmt;
+		var colW = (originWidth - (2 * spaceAmt)) / 3;
+		var rowH = colW * 1.2;
+		return A3(
+			_mdgriffith$style_elements$Element$grid,
+			_user$project$Pages_JarsPage$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+				_1: {ctor: '[]'}
+			},
+			{
+				columns: {
 					ctor: '::',
 					_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
 					_1: {
 						ctor: '::',
 						_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$px(colW),
+							_1: {ctor: '[]'}
+						}
 					}
-				}
-			},
-			rows: {
-				ctor: '::',
-				_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
-				_1: {
+				},
+				rows: {
 					ctor: '::',
 					_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
 					_1: {
 						ctor: '::',
 						_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
-						_1: {ctor: '[]'}
-					}
-				}
-			},
-			cells: {
-				ctor: '::',
-				_0: _user$project$Pages_JarsPage$viewLumoBlock(
-					{ctor: '_Tuple2', _0: 0, _1: 0}),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Pages_JarsPage$viewLumoBlock(
-						{ctor: '_Tuple2', _0: 1, _1: 0}),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Pages_JarsPage$viewLumoBlock(
-							{ctor: '_Tuple2', _0: 2, _1: 0}),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Pages_JarsPage$viewLumoBlock(
-								{ctor: '_Tuple2', _0: 0, _1: 1}),
+							_0: _mdgriffith$style_elements$Element_Attributes$px(rowH),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				cells: {
+					ctor: '::',
+					_0: A2(
+						_user$project$Pages_JarsPage$viewLumoBlock,
+						{ctor: '_Tuple2', _0: 0, _1: 0},
+						model.cardsForJars.aa),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_user$project$Pages_JarsPage$viewLumoBlock,
+							{ctor: '_Tuple2', _0: 1, _1: 0},
+							model.cardsForJars.bb),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_user$project$Pages_JarsPage$viewLumoBlock,
+								{ctor: '_Tuple2', _0: 2, _1: 0},
+								model.cardsForJars.cc),
 							_1: {
 								ctor: '::',
-								_0: _user$project$Pages_JarsPage$viewLumoBlockCenter(
-									{ctor: '_Tuple2', _0: 1, _1: 1}),
+								_0: A2(
+									_user$project$Pages_JarsPage$viewLumoBlock,
+									{ctor: '_Tuple2', _0: 0, _1: 1},
+									model.cardsForJars.dd),
 								_1: {
 									ctor: '::',
-									_0: _user$project$Pages_JarsPage$viewLumoBlock(
-										{ctor: '_Tuple2', _0: 2, _1: 1}),
+									_0: _user$project$Pages_JarsPage$viewLumoBlockCenter(
+										{ctor: '_Tuple2', _0: 1, _1: 1}),
 									_1: {
 										ctor: '::',
-										_0: _user$project$Pages_JarsPage$viewLumoBlock(
-											{ctor: '_Tuple2', _0: 0, _1: 2}),
+										_0: A2(
+											_user$project$Pages_JarsPage$viewLumoBlock,
+											{ctor: '_Tuple2', _0: 2, _1: 1},
+											model.cardsForJars.ff),
 										_1: {
 											ctor: '::',
-											_0: _user$project$Pages_JarsPage$viewLumoBlock(
-												{ctor: '_Tuple2', _0: 1, _1: 2}),
+											_0: A2(
+												_user$project$Pages_JarsPage$viewLumoBlock,
+												{ctor: '_Tuple2', _0: 0, _1: 2},
+												model.cardsForJars.gg),
 											_1: {
 												ctor: '::',
-												_0: _user$project$Pages_JarsPage$viewLumoBlock(
-													{ctor: '_Tuple2', _0: 2, _1: 2}),
-												_1: {ctor: '[]'}
+												_0: A2(
+													_user$project$Pages_JarsPage$viewLumoBlock,
+													{ctor: '_Tuple2', _0: 1, _1: 2},
+													model.cardsForJars.hh),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_user$project$Pages_JarsPage$viewLumoBlock,
+														{ctor: '_Tuple2', _0: 2, _1: 2},
+														model.cardsForJars.ii),
+													_1: {ctor: '[]'}
+												}
 											}
 										}
 									}
@@ -273,9 +368,8 @@ var _user$project$Pages_JarsPage$viewGrid = function (originWidth) {
 						}
 					}
 				}
-			}
-		});
-};
+			});
+	});
 var _user$project$Pages_JarsPage$viewDebug = A3(
 	_mdgriffith$style_elements$Element$row,
 	_user$project$Pages_JarsPage$Debug,
@@ -299,7 +393,7 @@ var _user$project$Pages_JarsPage$viewDebug = A3(
 			_mdgriffith$style_elements$Element$el,
 			_user$project$Pages_JarsPage$None,
 			{ctor: '[]'},
-			_mdgriffith$style_elements$Element$text('debug')),
+			_mdgriffith$style_elements$Element$text('...')),
 		_1: {ctor: '[]'}
 	});
 var _user$project$Pages_JarsPage$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
@@ -503,7 +597,7 @@ var _user$project$Pages_JarsPage$stylesheet = _mdgriffith$style_elements$Style$s
 			}
 		}
 	});
-var _user$project$Pages_JarsPage$viewPage = function () {
+var _user$project$Pages_JarsPage$viewPage = function (model) {
 	var originWidth = 580;
 	return A2(
 		_mdgriffith$style_elements$Element$layout,
@@ -540,7 +634,7 @@ var _user$project$Pages_JarsPage$viewPage = function () {
 							_0: _user$project$Pages_JarsPage$viewHeader,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Pages_JarsPage$viewGrid(originWidth),
+								_0: A2(_user$project$Pages_JarsPage$viewGrid, originWidth, model),
 								_1: {
 									ctor: '::',
 									_0: _user$project$Pages_JarsPage$viewDebug,
@@ -550,4 +644,4 @@ var _user$project$Pages_JarsPage$viewPage = function () {
 						})),
 				_1: {ctor: '[]'}
 			}));
-}();
+};

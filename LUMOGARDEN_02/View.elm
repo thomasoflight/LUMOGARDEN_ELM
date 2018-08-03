@@ -14,7 +14,7 @@ view model =
             Pages.BlocksPage.viewPage model.cardsForBlocks
 
         JarsPage string ->
-            Pages.JarsPage.viewPage
+            Pages.JarsPage.viewPage model
 
         NotFoundPage ->
             notFoundPage

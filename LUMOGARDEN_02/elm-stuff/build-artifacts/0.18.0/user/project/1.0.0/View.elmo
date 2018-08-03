@@ -12,7 +12,7 @@ var _user$project$View$view = function (model) {
 		case 'BlocksPage':
 			return _user$project$Pages_BlocksPage$viewPage(model.cardsForBlocks);
 		case 'JarsPage':
-			return _user$project$Pages_JarsPage$viewPage;
+			return _user$project$Pages_JarsPage$viewPage(model);
 		default:
 			return _user$project$View$notFoundPage;
 	}
