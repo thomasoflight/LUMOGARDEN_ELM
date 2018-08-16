@@ -1,5 +1,6 @@
 module Pages.BlocksPage exposing (..)
 
+import Array
 import Color
 import Element exposing (..)
 import Element.Attributes exposing (..)
@@ -96,6 +97,9 @@ viewLumoBlock coordinates cardsForBlocks =
     let
         ( x, y ) =
             coordinates
+
+        arrayBlocks =
+            Array.fromList cardsForBlocks
     in
     cell
         { start = ( x, y )
@@ -105,11 +109,48 @@ viewLumoBlock coordinates cardsForBlocks =
             column LumoBlock
                 []
                 [ row LumoBlockHeader [ height (px 40), center, alignBottom ] [ el None [] (text "...") ]
-                , text <| toString cardsForBlocks
-
-                --, link "/jars/arte/" <| el None [] (text "JARS")
+                , viewCardSteps (Array.get 0 arrayBlocks)
+                , viewCardSteps (Array.get 1 arrayBlocks)
+                , viewCardSteps (Array.get 2 arrayBlocks)
                 ]
         }
+
+
+
+--, link "/jars/arte/" <| el None [] (text "JARS")
+
+
+viewCardSteps card =
+    let
+        viewCheckbox step =
+            ( toString step.id
+            , row None
+                []
+                [ el None [ width (percent 80) ] (text step.description)
+                , Input.checkbox None
+                    [ Element.Events.onClick (Updates.ToggleComplete step.id) ]
+                    { onChange = Updates.Check
+                    , checked = step.completed
+                    , label = el None [] (text "")
+                    , options = []
+                    }
+                ]
+            )
+
+        selectSteps card =
+            card.steps
+                |> List.filter (\s -> not s.completed)
+                |> List.take 1
+    in
+    case card of
+        Just card ->
+            Keyed.column None
+                [ width fill, padding 10, spacing 20 ]
+            <|
+                List.map viewCheckbox (selectSteps card)
+
+        Nothing ->
+            text "..."
 
 
 viewDebug : Element MyStyles variation Msg
