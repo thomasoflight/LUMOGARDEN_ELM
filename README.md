@@ -8,9 +8,9 @@ NPM
   -elm-live@2.7.5
   
 ELM
-   "mdgriffith/style-elements": "4.3.0",
-    "elm-lang/navigation": "2.1.0",
-    "elm-lang/virtual-dom": "2.0.4",
+*"mdgriffith/style-elements": "4.3.0",
+*"elm-lang/navigation": "2.1.0",
+*"elm-lang/virtual-dom": "2.0.4",
     "evancz/url-parser": "2.0.1",
     "elm-lang/dom": "1.1.1",
     "elm-lang/html": "2.0.0",
