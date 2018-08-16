@@ -60,11 +60,19 @@ update msg model =
                         | steps = List.map updateCheck c.steps
                     }
 
-                updatedCards =
-                    List.map updateCard model.allCards
+                newAA =
+                    updateCard model.cardsForJars.aa
+
+                newBB =
+                    updateCard model.cardsForJars.bb
+
+                newA =
+                    List.map updateCard model.cardsForBlocks.a
             in
             { model
-                | allCards = updatedCards
+                | cardsForBlocks = Blocks newA [] [] [] [] [] [] []
+                , cardsForJars = Jars newAA newBB cardDflt cardDflt cardDflt cardDflt cardDflt cardDflt
+                , allCards = List.map updateCard model.allCards
                 , flaggedForComplete = []
             }
                 ! []

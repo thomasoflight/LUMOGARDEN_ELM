@@ -21,4 +21,5 @@ matchRoute =
         [ map Types.BlocksPage top
         , map Types.BlocksPage (s "blocks")
         , map Types.JarsPage (s "jars" </> string)
+        , map Types.CardsPage (s "cards" </> int)
         ]

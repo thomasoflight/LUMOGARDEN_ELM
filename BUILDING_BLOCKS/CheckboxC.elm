@@ -5,7 +5,6 @@ import Element exposing (..)
 import Element.Attributes exposing (..)
 import Element.Events
 import Element.Input as Input
-import Element.Keyed as Keyed
 import Html
 import Style exposing (..)
 import Style.Background as Background
@@ -225,8 +224,7 @@ viewRefresh =
 viewCardSteps cardPosition card =
     let
         viewCheckbox step =
-            ( toString step.id
-            , row None
+            row None
                 []
                 [ el None [ width (percent 80) ] (text step.description)
                 , Input.checkbox None
@@ -237,7 +235,6 @@ viewCardSteps cardPosition card =
                     , options = []
                     }
                 ]
-            )
 
         activeSteps =
             List.filter (\s -> not s.completed) card.steps

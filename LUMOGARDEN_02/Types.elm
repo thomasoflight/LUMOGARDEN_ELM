@@ -19,11 +19,13 @@ type CardActive
 type Page
     = BlocksPage
     | JarsPage String
+    | CardsPage Int
     | NotFoundPage
 
 
 type alias Card =
-    { title : String
+    { id : Int
+    , title : String
     , steps : List Step
     , active : CardActive
     }
@@ -83,23 +85,23 @@ moreSteps =
 
 cardA : Card
 cardA =
-    Card "A" someSteps Inactive
+    Card 1 "A" someSteps Inactive
 
 
 cardB : Card
 cardB =
-    Card "B" moreSteps (ActiveBlock "arte")
+    Card 2 "B" moreSteps (ActiveBlock "arte")
 
 
 emptyBlocks : Blocks
 emptyBlocks =
-    Blocks [ cardDflt ] [] [] [] [] [] [] []
+    Blocks [ cardA, cardB ] [] [] [] [] [] [] []
 
 
 emptyJars : Jars
 emptyJars =
-    Jars cardDflt cardDflt cardDflt cardDflt cardDflt cardDflt cardDflt cardDflt
+    Jars cardA cardB cardDflt cardDflt cardDflt cardDflt cardDflt cardDflt
 
 
 cardDflt =
-    Card "..." [] Inactive
+    Card 0 "..." [] Inactive

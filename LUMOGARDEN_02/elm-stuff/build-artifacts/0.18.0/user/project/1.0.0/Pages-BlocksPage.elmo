@@ -143,11 +143,96 @@ var _user$project$Pages_BlocksPage$viewHeader = A3(
 			_mdgriffith$style_elements$Element$text('lumogarden : blocks')),
 		_1: {ctor: '[]'}
 	});
+var _user$project$Pages_BlocksPage$viewCardSteps = function (card) {
+	var selectSteps = function (card) {
+		return A2(
+			_elm_lang$core$List$take,
+			1,
+			A2(
+				_elm_lang$core$List$filter,
+				function (s) {
+					return !s.completed;
+				},
+				card.steps));
+	};
+	var viewCheckbox = function (step) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(step.id),
+			_1: A3(
+				_mdgriffith$style_elements$Element$row,
+				_user$project$Pages_BlocksPage$None,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$el,
+						_user$project$Pages_BlocksPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$percent(80)),
+							_1: {ctor: '[]'}
+						},
+						_mdgriffith$style_elements$Element$text(step.description)),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element_Input$checkbox,
+							_user$project$Pages_BlocksPage$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Events$onClick(
+									_user$project$Updates$ToggleComplete(step.id)),
+								_1: {ctor: '[]'}
+							},
+							{
+								onChange: _user$project$Updates$Check,
+								checked: step.completed,
+								label: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_BlocksPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('')),
+								options: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})
+		};
+	};
+	var _p1 = card;
+	if (_p1.ctor === 'Just') {
+		return A3(
+			_mdgriffith$style_elements$Element_Keyed$column,
+			_user$project$Pages_BlocksPage$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			A2(
+				_elm_lang$core$List$map,
+				viewCheckbox,
+				selectSteps(_p1._0)));
+	} else {
+		return _mdgriffith$style_elements$Element$text('...');
+	}
+};
 var _user$project$Pages_BlocksPage$viewLumoBlock = F2(
 	function (coordinates, cardsForBlocks) {
-		var _p1 = coordinates;
-		var x = _p1._0;
-		var y = _p1._1;
+		var arrayBlocks = _elm_lang$core$Array$fromList(cardsForBlocks);
+		var _p2 = coordinates;
+		var x = _p2._0;
+		var y = _p2._1;
 		return _mdgriffith$style_elements$Element$cell(
 			{
 				start: {ctor: '_Tuple2', _0: x, _1: y},
@@ -187,9 +272,19 @@ var _user$project$Pages_BlocksPage$viewLumoBlock = F2(
 							}),
 						_1: {
 							ctor: '::',
-							_0: _mdgriffith$style_elements$Element$text(
-								_elm_lang$core$Basics$toString(cardsForBlocks)),
-							_1: {ctor: '[]'}
+							_0: _user$project$Pages_BlocksPage$viewCardSteps(
+								A2(_elm_lang$core$Array$get, 0, arrayBlocks)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Pages_BlocksPage$viewCardSteps(
+									A2(_elm_lang$core$Array$get, 1, arrayBlocks)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_BlocksPage$viewCardSteps(
+										A2(_elm_lang$core$Array$get, 2, arrayBlocks)),
+									_1: {ctor: '[]'}
+								}
+							}
 						}
 					})
 			});

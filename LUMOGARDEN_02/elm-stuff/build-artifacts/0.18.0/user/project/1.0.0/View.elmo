@@ -1,3 +1,13 @@
+var _user$project$View$findCardById = F2(
+	function (id, cards) {
+		return _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (c) {
+					return _elm_lang$core$Native_Utils.eq(c.id, id);
+				},
+				cards));
+	});
 var _user$project$View$notFoundPage = A2(
 	_elm_lang$html$Html$h3,
 	{ctor: '[]'},
@@ -13,6 +23,13 @@ var _user$project$View$view = function (model) {
 			return _user$project$Pages_BlocksPage$viewPage(model.cardsForBlocks);
 		case 'JarsPage':
 			return _user$project$Pages_JarsPage$viewPage(model);
+		case 'CardsPage':
+			var _p1 = A2(_user$project$View$findCardById, _p0._0, model.allCards);
+			if (_p1.ctor === 'Just') {
+				return _user$project$Pages_CardsPage$viewPage(_p1._0);
+			} else {
+				return _user$project$View$notFoundPage;
+			}
 		default:
 			return _user$project$View$notFoundPage;
 	}

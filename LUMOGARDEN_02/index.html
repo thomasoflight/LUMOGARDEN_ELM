@@ -24187,9 +24187,9 @@ var _user$project$Types$Model = F5(
 	function (a, b, c, d, e) {
 		return {currentPage: a, allCards: b, cardsForBlocks: c, cardsForJars: d, flaggedForComplete: e};
 	});
-var _user$project$Types$Card = F3(
-	function (a, b, c) {
-		return {title: a, steps: b, active: c};
+var _user$project$Types$Card = F4(
+	function (a, b, c, d) {
+		return {id: a, title: b, steps: c, active: d};
 	});
 var _user$project$Types$Step = F3(
 	function (a, b, c) {
@@ -24250,18 +24250,35 @@ var _user$project$Types$Jars = F8(
 		return {aa: a, bb: b, cc: c, dd: d, ff: e, gg: f, hh: g, ii: h};
 	});
 var _user$project$Types$Inactive = {ctor: 'Inactive'};
-var _user$project$Types$cardA = A3(_user$project$Types$Card, 'A', _user$project$Types$someSteps, _user$project$Types$Inactive);
-var _user$project$Types$cardDflt = A3(
+var _user$project$Types$cardA = A4(_user$project$Types$Card, 1, 'A', _user$project$Types$someSteps, _user$project$Types$Inactive);
+var _user$project$Types$cardDflt = A4(
 	_user$project$Types$Card,
+	0,
 	'...',
 	{ctor: '[]'},
 	_user$project$Types$Inactive);
+var _user$project$Types$ActiveJar = function (a) {
+	return {ctor: 'ActiveJar', _0: a};
+};
+var _user$project$Types$ActiveBlock = function (a) {
+	return {ctor: 'ActiveBlock', _0: a};
+};
+var _user$project$Types$cardB = A4(
+	_user$project$Types$Card,
+	2,
+	'B',
+	_user$project$Types$moreSteps,
+	_user$project$Types$ActiveBlock('arte'));
 var _user$project$Types$emptyBlocks = A8(
 	_user$project$Types$Blocks,
 	{
 		ctor: '::',
-		_0: _user$project$Types$cardDflt,
-		_1: {ctor: '[]'}
+		_0: _user$project$Types$cardA,
+		_1: {
+			ctor: '::',
+			_0: _user$project$Types$cardB,
+			_1: {ctor: '[]'}
+		}
 	},
 	{ctor: '[]'},
 	{ctor: '[]'},
@@ -24270,19 +24287,11 @@ var _user$project$Types$emptyBlocks = A8(
 	{ctor: '[]'},
 	{ctor: '[]'},
 	{ctor: '[]'});
-var _user$project$Types$emptyJars = A8(_user$project$Types$Jars, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt);
-var _user$project$Types$ActiveJar = function (a) {
-	return {ctor: 'ActiveJar', _0: a};
-};
-var _user$project$Types$ActiveBlock = function (a) {
-	return {ctor: 'ActiveBlock', _0: a};
-};
-var _user$project$Types$cardB = A3(
-	_user$project$Types$Card,
-	'B',
-	_user$project$Types$moreSteps,
-	_user$project$Types$ActiveBlock('arte'));
+var _user$project$Types$emptyJars = A8(_user$project$Types$Jars, _user$project$Types$cardA, _user$project$Types$cardB, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt);
 var _user$project$Types$NotFoundPage = {ctor: 'NotFoundPage'};
+var _user$project$Types$CardsPage = function (a) {
+	return {ctor: 'CardsPage', _0: a};
+};
 var _user$project$Types$JarsPage = function (a) {
 	return {ctor: 'JarsPage', _0: a};
 };
@@ -24306,7 +24315,17 @@ var _user$project$Routing$matchRoute = _evancz$url_parser$UrlParser$oneOf(
 						_evancz$url_parser$UrlParser_ops['</>'],
 						_evancz$url_parser$UrlParser$s('jars'),
 						_evancz$url_parser$UrlParser$string)),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_evancz$url_parser$UrlParser$map,
+						_user$project$Types$CardsPage,
+						A2(
+							_evancz$url_parser$UrlParser_ops['</>'],
+							_evancz$url_parser$UrlParser$s('cards'),
+							_evancz$url_parser$UrlParser$int)),
+					_1: {ctor: '[]'}
+				}
 			}
 		}
 	});
@@ -24378,13 +24397,26 @@ var _user$project$Updates$update = F2(
 							steps: A2(_elm_lang$core$List$map, updateCheck, c.steps)
 						});
 				};
-				var updatedCards = A2(_elm_lang$core$List$map, updateCard, model.allCards);
+				var newAA = updateCard(model.cardsForJars.aa);
+				var newBB = updateCard(model.cardsForJars.bb);
+				var newA = A2(_elm_lang$core$List$map, updateCard, model.cardsForBlocks.a);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{
-							allCards: updatedCards,
+							cardsForBlocks: A8(
+								_user$project$Types$Blocks,
+								newA,
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							cardsForJars: A8(_user$project$Types$Jars, newAA, newBB, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt),
+							allCards: A2(_elm_lang$core$List$map, updateCard, model.allCards),
 							flaggedForComplete: {ctor: '[]'}
 						}),
 					{ctor: '[]'});
@@ -24571,11 +24603,96 @@ var _user$project$Pages_BlocksPage$viewHeader = A3(
 			_mdgriffith$style_elements$Element$text('lumogarden : blocks')),
 		_1: {ctor: '[]'}
 	});
+var _user$project$Pages_BlocksPage$viewCardSteps = function (card) {
+	var selectSteps = function (card) {
+		return A2(
+			_elm_lang$core$List$take,
+			1,
+			A2(
+				_elm_lang$core$List$filter,
+				function (s) {
+					return !s.completed;
+				},
+				card.steps));
+	};
+	var viewCheckbox = function (step) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(step.id),
+			_1: A3(
+				_mdgriffith$style_elements$Element$row,
+				_user$project$Pages_BlocksPage$None,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$el,
+						_user$project$Pages_BlocksPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$percent(80)),
+							_1: {ctor: '[]'}
+						},
+						_mdgriffith$style_elements$Element$text(step.description)),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element_Input$checkbox,
+							_user$project$Pages_BlocksPage$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Events$onClick(
+									_user$project$Updates$ToggleComplete(step.id)),
+								_1: {ctor: '[]'}
+							},
+							{
+								onChange: _user$project$Updates$Check,
+								checked: step.completed,
+								label: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_BlocksPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('')),
+								options: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})
+		};
+	};
+	var _p1 = card;
+	if (_p1.ctor === 'Just') {
+		return A3(
+			_mdgriffith$style_elements$Element_Keyed$column,
+			_user$project$Pages_BlocksPage$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			A2(
+				_elm_lang$core$List$map,
+				viewCheckbox,
+				selectSteps(_p1._0)));
+	} else {
+		return _mdgriffith$style_elements$Element$text('...');
+	}
+};
 var _user$project$Pages_BlocksPage$viewLumoBlock = F2(
 	function (coordinates, cardsForBlocks) {
-		var _p1 = coordinates;
-		var x = _p1._0;
-		var y = _p1._1;
+		var arrayBlocks = _elm_lang$core$Array$fromList(cardsForBlocks);
+		var _p2 = coordinates;
+		var x = _p2._0;
+		var y = _p2._1;
 		return _mdgriffith$style_elements$Element$cell(
 			{
 				start: {ctor: '_Tuple2', _0: x, _1: y},
@@ -24615,9 +24732,19 @@ var _user$project$Pages_BlocksPage$viewLumoBlock = F2(
 							}),
 						_1: {
 							ctor: '::',
-							_0: _mdgriffith$style_elements$Element$text(
-								_elm_lang$core$Basics$toString(cardsForBlocks)),
-							_1: {ctor: '[]'}
+							_0: _user$project$Pages_BlocksPage$viewCardSteps(
+								A2(_elm_lang$core$Array$get, 0, arrayBlocks)),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Pages_BlocksPage$viewCardSteps(
+									A2(_elm_lang$core$Array$get, 1, arrayBlocks)),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_BlocksPage$viewCardSteps(
+										A2(_elm_lang$core$Array$get, 2, arrayBlocks)),
+									_1: {ctor: '[]'}
+								}
+							}
 						}
 					})
 			});
@@ -24996,6 +25123,431 @@ var _user$project$Pages_BlocksPage$viewPage = function (cardsForBlocks) {
 									ctor: '::',
 									_0: _user$project$Pages_BlocksPage$viewDebug,
 									_1: {ctor: '[]'}
+								}
+							}
+						})),
+				_1: {ctor: '[]'}
+			}));
+};
+var _user$project$Pages_CardsPage$header = {
+	ctor: '::',
+	_0: _mdgriffith$style_elements$Style_Font$font('raleway'),
+	_1: {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Style_Font$font('helvetica'),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Pages_CardsPage$LumoActions = {ctor: 'LumoActions'};
+var _user$project$Pages_CardsPage$viewRebloom = A3(
+	_mdgriffith$style_elements$Element$el,
+	_user$project$Pages_CardsPage$LumoActions,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Events$onClick(_user$project$Updates$Rebloom),
+			_1: {ctor: '[]'}
+		}
+	},
+	_mdgriffith$style_elements$Element$text('Rebloom'));
+var _user$project$Pages_CardsPage$LumoBlockHeaderCenter = {ctor: 'LumoBlockHeaderCenter'};
+var _user$project$Pages_CardsPage$LumoBlockHeader = {ctor: 'LumoBlockHeader'};
+var _user$project$Pages_CardsPage$LumoBlock = {ctor: 'LumoBlock'};
+var _user$project$Pages_CardsPage$LumoHeader = {ctor: 'LumoHeader'};
+var _user$project$Pages_CardsPage$Title = {ctor: 'Title'};
+var _user$project$Pages_CardsPage$BlocksContainer = {ctor: 'BlocksContainer'};
+var _user$project$Pages_CardsPage$Debug = {ctor: 'Debug'};
+var _user$project$Pages_CardsPage$None = {ctor: 'None'};
+var _user$project$Pages_CardsPage$viewHeader = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_CardsPage$None,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(50)),
+		_1: {
+			ctor: '::',
+			_0: A2(_mdgriffith$style_elements$Element_Attributes$paddingXY, 3, 1),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignBottom,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_CardsPage$LumoHeader,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('lumogarden : cards')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_CardsPage$viewCardSteps = function (card) {
+	var viewCheckbox = function (step) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(step.id),
+			_1: A3(
+				_mdgriffith$style_elements$Element$row,
+				_user$project$Pages_CardsPage$None,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$el,
+						_user$project$Pages_CardsPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$percent(80)),
+							_1: {ctor: '[]'}
+						},
+						_mdgriffith$style_elements$Element$text(step.description)),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element_Input$checkbox,
+							_user$project$Pages_CardsPage$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$alignRight,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Events$onClick(
+										_user$project$Updates$ToggleComplete(step.id)),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								onChange: _user$project$Updates$Check,
+								checked: step.completed,
+								label: A3(
+									_mdgriffith$style_elements$Element$el,
+									_user$project$Pages_CardsPage$None,
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('')),
+								options: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				})
+		};
+	};
+	return A3(
+		_mdgriffith$style_elements$Element_Keyed$column,
+		_user$project$Pages_CardsPage$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		A2(_elm_lang$core$List$map, viewCheckbox, card.steps));
+};
+var _user$project$Pages_CardsPage$viewCard = function (card) {
+	return A3(
+		_mdgriffith$style_elements$Element$row,
+		_user$project$Pages_CardsPage$LumoBlock,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$minHeight(
+				_mdgriffith$style_elements$Element_Attributes$px(580)),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$padding(20),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _user$project$Pages_CardsPage$viewCardSteps(card),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Pages_CardsPage$viewDebug = A3(
+	_mdgriffith$style_elements$Element$row,
+	_user$project$Pages_CardsPage$Debug,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(30)),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$el,
+			_user$project$Pages_CardsPage$None,
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text('...')),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Pages_CardsPage$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_user$project$Pages_CardsPage$None,
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_user$project$Pages_CardsPage$Title,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Font$size(22),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_user$project$Pages_CardsPage$LumoBlock,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$black),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$white),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$all(1),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$solid,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$uppercase,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_user$project$Pages_CardsPage$Debug,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$darkCharcoal),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_CardsPage$header),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$size(10),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$style,
+							_user$project$Pages_CardsPage$BlocksContainer,
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$style,
+								_user$project$Pages_CardsPage$LumoHeader,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_CardsPage$header),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Font$size(24),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Font$uppercase,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$light,
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_mdgriffith$style_elements$Style$style,
+									_user$project$Pages_CardsPage$LumoBlockHeader,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$bottom(1),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$solid,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$darkCharcoal),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_CardsPage$header),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Font$size(20),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_mdgriffith$style_elements$Style$style,
+										_user$project$Pages_CardsPage$LumoBlockHeaderCenter,
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$charcoal),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Border$all(1),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Border$solid,
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Border$rounded(6),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$Pages_CardsPage$header),
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Style_Font$size(20),
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style_Font$letterSpacing(1.5),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_mdgriffith$style_elements$Style$style,
+											_user$project$Pages_CardsPage$LumoActions,
+											{
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Font$size(14),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$center,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Pages_CardsPage$viewPage = function (card) {
+	var originWidth = 580;
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_user$project$Pages_CardsPage$stylesheet,
+		A3(
+			_mdgriffith$style_elements$Element$column,
+			_user$project$Pages_CardsPage$None,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_user$project$Pages_CardsPage$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(
+								_mdgriffith$style_elements$Element_Attributes$px(originWidth)),
+							_1: {ctor: '[]'}
+						}
+					},
+					A3(
+						_mdgriffith$style_elements$Element$column,
+						_user$project$Pages_CardsPage$None,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Pages_CardsPage$viewHeader,
+							_1: {
+								ctor: '::',
+								_0: _user$project$Pages_CardsPage$viewCard(card),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Pages_CardsPage$viewRebloom,
+									_1: {
+										ctor: '::',
+										_0: _user$project$Pages_CardsPage$viewDebug,
+										_1: {ctor: '[]'}
+									}
 								}
 							}
 						})),
@@ -25649,6 +26201,16 @@ var _user$project$Pages_JarsPage$viewPage = function (model) {
 				_1: {ctor: '[]'}
 			}));
 };
+var _user$project$View$findCardById = F2(
+	function (id, cards) {
+		return _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (c) {
+					return _elm_lang$core$Native_Utils.eq(c.id, id);
+				},
+				cards));
+	});
 var _user$project$View$notFoundPage = A2(
 	_elm_lang$html$Html$h3,
 	{ctor: '[]'},
@@ -25664,6 +26226,13 @@ var _user$project$View$view = function (model) {
 			return _user$project$Pages_BlocksPage$viewPage(model.cardsForBlocks);
 		case 'JarsPage':
 			return _user$project$Pages_JarsPage$viewPage(model);
+		case 'CardsPage':
+			var _p1 = A2(_user$project$View$findCardById, _p0._0, model.allCards);
+			if (_p1.ctor === 'Just') {
+				return _user$project$Pages_CardsPage$viewPage(_p1._0);
+			} else {
+				return _user$project$View$notFoundPage;
+			}
 		default:
 			return _user$project$View$notFoundPage;
 	}

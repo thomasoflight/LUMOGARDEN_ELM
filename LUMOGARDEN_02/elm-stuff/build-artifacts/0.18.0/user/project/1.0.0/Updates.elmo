@@ -58,13 +58,26 @@ var _user$project$Updates$update = F2(
 							steps: A2(_elm_lang$core$List$map, updateCheck, c.steps)
 						});
 				};
-				var updatedCards = A2(_elm_lang$core$List$map, updateCard, model.allCards);
+				var newAA = updateCard(model.cardsForJars.aa);
+				var newBB = updateCard(model.cardsForJars.bb);
+				var newA = A2(_elm_lang$core$List$map, updateCard, model.cardsForBlocks.a);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
 						{
-							allCards: updatedCards,
+							cardsForBlocks: A8(
+								_user$project$Types$Blocks,
+								newA,
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							cardsForJars: A8(_user$project$Types$Jars, newAA, newBB, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt),
+							allCards: A2(_elm_lang$core$List$map, updateCard, model.allCards),
 							flaggedForComplete: {ctor: '[]'}
 						}),
 					{ctor: '[]'});

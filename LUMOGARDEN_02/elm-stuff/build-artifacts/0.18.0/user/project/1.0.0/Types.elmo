@@ -2,9 +2,9 @@ var _user$project$Types$Model = F5(
 	function (a, b, c, d, e) {
 		return {currentPage: a, allCards: b, cardsForBlocks: c, cardsForJars: d, flaggedForComplete: e};
 	});
-var _user$project$Types$Card = F3(
-	function (a, b, c) {
-		return {title: a, steps: b, active: c};
+var _user$project$Types$Card = F4(
+	function (a, b, c, d) {
+		return {id: a, title: b, steps: c, active: d};
 	});
 var _user$project$Types$Step = F3(
 	function (a, b, c) {
@@ -65,18 +65,35 @@ var _user$project$Types$Jars = F8(
 		return {aa: a, bb: b, cc: c, dd: d, ff: e, gg: f, hh: g, ii: h};
 	});
 var _user$project$Types$Inactive = {ctor: 'Inactive'};
-var _user$project$Types$cardA = A3(_user$project$Types$Card, 'A', _user$project$Types$someSteps, _user$project$Types$Inactive);
-var _user$project$Types$cardDflt = A3(
+var _user$project$Types$cardA = A4(_user$project$Types$Card, 1, 'A', _user$project$Types$someSteps, _user$project$Types$Inactive);
+var _user$project$Types$cardDflt = A4(
 	_user$project$Types$Card,
+	0,
 	'...',
 	{ctor: '[]'},
 	_user$project$Types$Inactive);
+var _user$project$Types$ActiveJar = function (a) {
+	return {ctor: 'ActiveJar', _0: a};
+};
+var _user$project$Types$ActiveBlock = function (a) {
+	return {ctor: 'ActiveBlock', _0: a};
+};
+var _user$project$Types$cardB = A4(
+	_user$project$Types$Card,
+	2,
+	'B',
+	_user$project$Types$moreSteps,
+	_user$project$Types$ActiveBlock('arte'));
 var _user$project$Types$emptyBlocks = A8(
 	_user$project$Types$Blocks,
 	{
 		ctor: '::',
-		_0: _user$project$Types$cardDflt,
-		_1: {ctor: '[]'}
+		_0: _user$project$Types$cardA,
+		_1: {
+			ctor: '::',
+			_0: _user$project$Types$cardB,
+			_1: {ctor: '[]'}
+		}
 	},
 	{ctor: '[]'},
 	{ctor: '[]'},
@@ -85,19 +102,11 @@ var _user$project$Types$emptyBlocks = A8(
 	{ctor: '[]'},
 	{ctor: '[]'},
 	{ctor: '[]'});
-var _user$project$Types$emptyJars = A8(_user$project$Types$Jars, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt);
-var _user$project$Types$ActiveJar = function (a) {
-	return {ctor: 'ActiveJar', _0: a};
-};
-var _user$project$Types$ActiveBlock = function (a) {
-	return {ctor: 'ActiveBlock', _0: a};
-};
-var _user$project$Types$cardB = A3(
-	_user$project$Types$Card,
-	'B',
-	_user$project$Types$moreSteps,
-	_user$project$Types$ActiveBlock('arte'));
+var _user$project$Types$emptyJars = A8(_user$project$Types$Jars, _user$project$Types$cardA, _user$project$Types$cardB, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt, _user$project$Types$cardDflt);
 var _user$project$Types$NotFoundPage = {ctor: 'NotFoundPage'};
+var _user$project$Types$CardsPage = function (a) {
+	return {ctor: 'CardsPage', _0: a};
+};
 var _user$project$Types$JarsPage = function (a) {
 	return {ctor: 'JarsPage', _0: a};
 };
